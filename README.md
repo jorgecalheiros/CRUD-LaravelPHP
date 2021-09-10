@@ -1,5 +1,5 @@
 
-<img src = "https://www.tvplayer.com.br/img/Gerenciador-de-Conteudo-Web-Apresentacao.png">
+<img src = "resources/img/Logotipo.png">
 
 # Mini gerenciador de conteudos com Laravel
 
