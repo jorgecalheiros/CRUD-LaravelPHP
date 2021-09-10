@@ -39,10 +39,10 @@ Após os passos anteriores é necessário inserir algumas informações importan
 
 |Váriavel  |Valor  |
 |---------|---------|
-|APP_URL     |Insira url da aplicação )      |
+|APP_URL     |(Insira url da aplicação )      |
 |APP_KEY     |Execute o comando `php artisan key:generate`         |
 |DB_CONNECTION     |mysql         |
-|DB_DATABASE     |defina o nome desejado para a base de daddos         |
+|DB_DATABASE     |defina o nome desejado para a base de dados         |
 |DB_PASSWORD     |defina a senha desejada para a base de dados         |
 
 ---
@@ -50,7 +50,7 @@ Após os passos anteriores é necessário inserir algumas informações importan
 
 Depois de fazer as observações crie o banco de dados de acordo com as intruções
 
-- No phpmyadim ou no mysql crie um banco de dados com o nome do DB_DATABASE do arquivo `.env`
+- No phpmyadimin ou no mysql crie um banco de dados com o nome do DB_DATABASE do arquivo `.env`
 - Agora no editor de codigo dentro do terminal execute o comando `php artisan migrate`
 - E execute o comando `php artisan db:seed` para criar 10 registros do banco de dados **(Opcional)**
 - Pronto sua aplicação está funcionando
