@@ -44,7 +44,7 @@ Após os passos anteriores é necessário inserir algumas informações importan
 |APP_ENV|(**local**: para ambiente de desenvolvimento, **production**: para ambiente de produção)|
 |APP_DEBUG|(**true**: para ambiente de desenvolvimento, **false**: para ambiente de produção)|
 |DB_CONNECTION     |mysql         |
-|DB_HOST|mysql|
+|DB_HOST|localhost|
 |DB_PORT|3306|
 |DB_DATABASE     |defina o nome desejado para a base de dados         |
 |DB_USERNAME|defina o usuário desejado para a base de dados|
