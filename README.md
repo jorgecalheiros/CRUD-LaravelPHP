@@ -23,7 +23,7 @@ Essa aplicação tem como objetivo criar um gerenciador de conteudos que foi con
 
 - Colar o repositorio dentro da pasta htdocs do xampp
 
-- Copiar o arquivo `.env.example` e mudar o nome para `.env` **(Ambiente de prodrução)**
+- Copiar o arquivo `.env.example` e mudar o nome para `.env`
 
 - Executar o comando `composer update`
 
@@ -41,6 +41,8 @@ Após os passos anteriores é necessário inserir algumas informações importan
 |---------|---------|
 |APP_URL     |(Insira url da aplicação )      |
 |APP_KEY     |Execute o comando `php artisan key:generate`         |
+|APP_ENV|(**local**: para ambiente de desenvolvimento, **production**: para ambiente de produção)|
+|APP_DEBUG|(**true**: para ambiente de desenvolvimento, **false**: para ambiente de produção)|
 |DB_CONNECTION     |mysql         |
 |DB_DATABASE     |defina o nome desejado para a base de dados         |
 |DB_PASSWORD     |defina a senha desejada para a base de dados         |
