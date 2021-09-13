@@ -110,7 +110,7 @@ class UserController extends Controller
             if (!$user->delete()) {
                 throw new Exception();
             }
-            return redirect(route("users.login"))->with([
+            return redirect(route("auth.login"))->with([
                 "message" => "Usuário deletado com sucesso"
             ]);
         } catch (\Throwable $th) {

@@ -61,7 +61,7 @@ class AuthController extends Controller
             "onlyEdit" => false,
             "title" => "Criar usuário",
             "method" => "POST",
-            "route" => route("users.store")
+            "route" => route("auth.store")
         ];
 
         return view("pages.users.form", compact("config"));
@@ -74,7 +74,7 @@ class AuthController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   
+    {
         try {
             $validator = Validator::make($request->all(), [
                 "name" => "required",
@@ -95,7 +95,7 @@ class AuthController extends Controller
             if (!$user->save()) {
                 throw new Exception();
             }
-            return redirect(route("users.login"))->with([
+            return redirect(route("auth.login"))->with([
                 "message" => "Usuário criado com sucesso"
             ]);
         } catch (\Throwable $th) {
@@ -112,7 +112,7 @@ class AuthController extends Controller
     {
         try {
             if (Auth::logout()) {
-                return redirect(route("users.login"));
+                return redirect(route("auth.login"));
             }
             throw new Exception();
         } catch (\Throwable $th) {

@@ -24,7 +24,7 @@
                 <div class="nav-bar">
                     <nav class="nav">
                         <ul>
-                            <a href="{{ $url }}users/{{ $user->id }}/edit/">
+                            <a href="{{ route('users.edit',$user->id) }}">
                                 <li class="item edit">
                                     <p class="description">EDITAR CONTA</p>
                                 </li>
@@ -68,7 +68,7 @@
                 </form>
             </div>
         </div>
-        <form action="{{ route('users.logout') }}" method="GET" class="form-logout">
+        <form action="{{ route('auth.logout') }}" method="GET" class="form-logout">
             <button class="btn btn-logout">
                 Logout
             </button>

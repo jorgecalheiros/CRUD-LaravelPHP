@@ -28,7 +28,7 @@
             <p class="description">Caso já tenha uma conta então fassa o seu login <br>
             clicando no botão abaixo</p>
             <br>
-            <a href="{{ route('users.login') }}" class="btn-a">
+            <a href="{{ route('auth.login') }}" class="btn-a">
                 Login
             </a>
         </div>

@@ -15,14 +15,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::resource("users", UserController::class)->middleware("auth");
+Route::resource("users", UserController::class, [
+    'only' => ['index', 'show', 'edit', 'update', 'destroy']
+])->middleware("auth");
 
-Route::get("login", [AuthController::class, "login"])->name("users.login");
+Route::get("login", [AuthController::class, "login"])->name("auth.login");
 
-Route::post("authenticate", [AuthController::class, "authenticate"])->name("users.auth");
+Route::post("authenticate", [AuthController::class, "authenticate"])->name("auth.auth");
 
-Route::get("create", [AuthController::class, "create"])->name("users.create");
+Route::get("create", [AuthController::class, "create"])->name("auth.create");
 
-Route::post("store", [AuthController::class, "store"])->name("users.store");
+Route::post("store", [AuthController::class, "store"])->name("auth.store");
 
-Route::get("logout", [AuthController::class, "logout"])->name("users.logout");
+Route::get("logout", [AuthController::class, "logout"])->name("auth.logout");

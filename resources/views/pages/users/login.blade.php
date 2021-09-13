@@ -37,11 +37,11 @@
         <h2 class="title-form">Não tem conta?</h2>
         <p class="description">Caso não tenha uma conta clique no botão abaixo para se cadastrar</p>
         <br>
-        <a href="{{ route('users.create') }}" class="btn-a">
+        <a href="{{ route('auth.create') }}" class="btn-a">
             Criar conta
         </a>
     </div>
-    <form action="{{ route('users.auth') }}" class="side-form" method="POST">
+    <form action="{{ route('auth.auth') }}" class="side-form" method="POST">
         @csrf
         <label for="" class="label-input">
             <i class="fas fa-envelope-open-text icons"></i><input type="email" name="email" id="email" placeholder="Digite seu email" autocomplete="off">
