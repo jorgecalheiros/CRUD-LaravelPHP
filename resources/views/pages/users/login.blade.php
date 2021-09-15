@@ -6,16 +6,8 @@
     @if (Session::has("message"))
     <p>{!! Session::get("message") !!}</p>
     @endif
+    <x-system.message />
  <div class="container-form">
-    @if ($errors->any())
-        <div>
-            <ul>
-                @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
     <div class="side-login">
         <h1 class="title">Mini gerenciador de conteudos</h1>
         <h2 class="title-form">Logins recentes</h2>
@@ -43,12 +35,9 @@
     </div>
     <form action="{{ route('auth.auth') }}" class="side-form" method="POST">
         @csrf
-        <label for="" class="label-input">
-            <i class="fas fa-envelope-open-text icons"></i><input type="email" name="email" id="email" placeholder="Digite seu email" autocomplete="off">
-        </label>
-        <label for="" class="label-input">
-            <i class="fas fa-key icons"></i></i><input type="password" name="password" id="password" autocomplete="off"  placeholder="Digite a sua senha">
-        </label>
+        <x-form.input  type="email" name="email" icon="fa-envelope-open-text" placeholder="Digite seu email"/>
+        <x-form.input  type="password" name="password" icon="fa-key" placeholder="Digite a sua senha"/>
+
         <button class="btn submit">
             Entrar
         </button>

@@ -2,15 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\User\UserStore;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\User;
+use App\Repositories\Contracts\UserRepositoryContract;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Log;
 
 class AuthController extends Controller
 {
+    private UserRepositoryContract $repository;
+
+    public function __construct(UserRepositoryContract $repository)
+    {
+        $this->repository = $repository;
+    }
+
     /**
      * Show the form for login a resource.
      *
@@ -42,7 +50,7 @@ class AuthController extends Controller
             return redirect(route("users.index"));
         }
         return back()->withErrors([
-            "message" => "Email ou senha incorretos"
+            "modal-message" => "Email ou senha incorretos"
         ]);
     }
 
@@ -73,34 +81,23 @@ class AuthController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserStore $request)
     {
         try {
-            $validator = Validator::make($request->all(), [
-                "name" => "required",
-                "email" => "required|email",
-                "password" => "required|min:8"
-            ]);
+            $data = $request->except(["_token", "reppassword"]);
+            $data["password"] = Hash::make($data["password"]);
 
-            if ($validator->failed()) {
-                return redirect()->back()->withErrors($validator);
-            }
-
-            $user = new User();
-
-            $user->name = $request->input("name");
-            $user->email = $request->input("email");
-            $user->password = Hash::make($request->input("password"));
-
-            if (!$user->save()) {
+            if (!$this->repository->create($data)) {
                 throw new Exception();
             }
+
             return redirect(route("auth.login"))->with([
-                "message" => "Usuário criado com sucesso"
+                "sucess-message" => "Usuário criado com sucesso"
             ]);
         } catch (\Throwable $th) {
+            Log::error("authController@store " . $th->getMessage());
             return redirect()->back()->withErrors([
-                "message" => "Ocorreu um erro ao cadastrar, tente mais tarde"
+                "modal-message" => "Ocorreu um erro ao cadastrar, tente mais tarde"
             ]);
         }
     }

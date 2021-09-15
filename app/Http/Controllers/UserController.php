@@ -2,14 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Http\Requests\User\UserUpdate;
+use App\Repositories\Contracts\UserRepositoryContract;
 use Exception;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
+    private  UserRepositoryContract $repository;
+
+    public function __construct(UserRepositoryContract $repository)
+    {
+        $this->repository = $repository;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -17,7 +22,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $users = $this->repository->list();
         return view("pages.users.index", compact("users"));
     }
     /**
@@ -26,8 +31,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show($id)
     {
+        $user = $this->repository->findOrFail($id);
         $url = env("APP_URL");
         return view("pages.users.show", compact("user", "url"));
     }
@@ -40,7 +46,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $user = User::find($id);
+
+        $user = $this->repository->findOrFail($id);
 
         $config = [
             "onlyEdit" => true,
@@ -60,19 +67,12 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UserUpdate $request, $id)
     {
         try {
-            $validator = Validator::make($request->all(), [
-                "name" => "required",
-                "email" => "required|email",
-                "password" => "required|min:8"
-            ]);
-            if ($validator->failed()) {
-                return redirect()->back()->withErrors($validator);
-            }
+            $data = $request->except(["_token", "_method"]);
 
-            $user = User::find($id);
+            $user = $this->repository->findOrFail($id);
 
             if (!Hash::check($request->input("password"), $user->password)) {
                 return back()->withErrors([
@@ -80,18 +80,15 @@ class UserController extends Controller
                 ]);
             }
 
-            $user->name = $request->input("name");
-            $user->email = $request->input("email");
-
-            if (!$user->save()) {
+            if (!$this->repository->update($id, $data)) {
                 throw new Exception();
             }
             return redirect(route("users.show", $id))->with([
-                "message" => "Usuário editado com sucesso com sucesso"
+                "sucess-message" => "Usuário editado com sucesso com sucesso"
             ]);
         } catch (\Throwable $th) {
             return back()->withErrors([
-                "message" => "Ocorreu um erro ao editar, tente mais tarde"
+                "modal-message" => "Ocorreu um erro ao editar, tente mais tarde"
             ]);
         }
     }
@@ -104,18 +101,16 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $user = User::find($id);
-
         try {
-            if (!$user->delete()) {
+            if (!$this->repository->delete($id)) {
                 throw new Exception();
             }
             return redirect(route("auth.login"))->with([
-                "message" => "Usuário deletado com sucesso"
+                "sucess-message" => "Usuário deletado com sucesso"
             ]);
         } catch (\Throwable $th) {
             return back()->withErrors([
-                "message" => "Error ao deletar usuário, tente denovo"
+                "modal-message" => "Error ao deletar usuário, tente denovo"
             ]);
         }
     }

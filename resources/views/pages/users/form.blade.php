@@ -11,16 +11,8 @@
 @section('title',$title)
 
 @section('content-form')
+<x-system.message />
 <div class="container-form">
-    @if ($errors->any())
-        <div>
-            <ul>
-                @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
     @if (!$onlyEdit)
         <div class="side-login">
             <h1 class="title">Mini gerenciador de conteudos</h1>
@@ -34,15 +26,12 @@
         </div>
         <form action="{{ $route }} " class="side-form" method="{{ $method }}">
             @csrf
-            <label for="" class="label-input">
-                <i class="fas fa-user icons"></i></i><input type="text" name="name" id="nome" placeholder="Digite o nome do seu usuário" autocomplete="off">
-            </label>
-            <label for="" class="label-input">
-                <i class="fas fa-envelope-open-text icons"></i><input type="email" name="email" id="email" placeholder="Digite seu email" autocomplete="off">
-            </label>
-            <label for="" class="label-input">
-                <i class="fas fa-key icons"></i></i><input type="password" name="password" id="password" autocomplete="off" placeholder="Digite a sua senha">
-            </label>
+            <x-form.input type="text" name="name" icon="fa-user" placeholder="Insira o seu nome" />
+
+            <x-form.input type="email" name="email" icon="fa-envelope-open-text" placeholder="Digite seu email" />
+
+            <x-form.input type="password" name="password" icon="fa-key" placeholder="Digite a sua senha" />
+
             <label for="" class="label-input">
                 <i class="fas fa-key icons"></i></i><input type="password" name="reppassword" id="reppassword" autocomplete="off" placeholder="Repita a senha">
             </label>
@@ -56,15 +45,11 @@
             @if ($_method)
                 @method($_method)
             @endif
-            <label for="" class="label-input">
-                <i class="fas fa-user icons"></i></i><input type="text" name="name" id="nome" placeholder="Digite o nome do seu usuário" autocomplete="off" value="{{ $user->name }}">
-            </label>
-            <label for="" class="label-input">
-                <i class="fas fa-envelope-open-text icons"></i><input type="email" name="email" id="email" placeholder="Digite seu email" autocomplete="off" value="{{ $user->email }}">
-            </label>
-            <label for="" class="label-input">
-                <i class="fas fa-key icons"></i></i><input type="password" name="password" id="password" autocomplete="off" placeholder="Confirme a sua senha" autocomplete="off">
-            </label>
+            <x-form.input type="text" name="name" icon="fa-user" placeholder="Insira o seu nome" value="{{ $user->name }}"/>
+
+            <x-form.input type="email" name="email" icon="fa-envelope-open-text" placeholder="Digite seu email" value="{{$user->email}}" />
+
+            <x-form.input type="password" name="password" icon="fa-key" placeholder="Digite a sua senha" />
             <button class="btn submit">
                 Editar conta
             </button>

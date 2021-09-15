@@ -7,6 +7,7 @@
  <p>com Laravel</p>
 
 <div class="container-max-user">
+
     <ul>
         @foreach ($users as $user)
             <li>{{ $user->name }}</li>
