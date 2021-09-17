@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\User\UserStore;
 use Exception;
 use Illuminate\Http\Request;
@@ -38,12 +39,9 @@ class AuthController extends Controller
     /**
      * authenticate token
      */
-    public function authenticate(Request $request)
+    public function authenticate(LoginRequest $request)
     {
-        $credentials = $request->validate([
-            "email" => "required|email",
-            "password" => "required"
-        ]);
+        $credentials = $request->except("_token");
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
