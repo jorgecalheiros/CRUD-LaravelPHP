@@ -6,40 +6,24 @@
     <x-system.message />
  <div class="container-form">
     <div class="side-login">
-        <h1 class="title">Mini gerenciador de conteudos</h1>
-        <h2 class="title-form">Logins recentes</h2>
-        <p class="description">Fassa login em uma de suas contas</p>
-        <div class="card">
-            <figure class="picture-user">
-
-            </figure>
-            <p class="name-user">Fulano</p>
-        </div>
-        <div class="card">
-            <figure class="picture-user">
-
-            </figure>
-            <p class="name-user">Fulano</p>
-        </div>
-        <br>
-        <br>
-        <h2 class="title-form">Não tem conta?</h2>
-        <p class="description">Caso não tenha uma conta clique no botão abaixo para se cadastrar</p>
+        <h1 class="title">{{ __("misc.text.application_title") }}</h1>
+        <h2 class="title-form">{{ __("user.text.dont_have_account") }}</h2>
+        <p class="description">{{ __("user.text.do_account") }}</p>
         <br>
         <a href="{{ route('auth.create') }}" class="btn-a">
-            Criar conta
+            {{ __("user.text.create_account") }}
         </a>
     </div>
     <form action="{{ route('auth.auth') }}" class="side-form" method="POST">
         @csrf
-        <x-form.input  type="email" name="email" icon="fa-envelope-open-text" placeholder="Digite seu email"/>
-        <x-form.input  type="password" name="password" icon="fa-key" placeholder="Digite a sua senha"/>
+        <x-form.input  type="email" name="email" icon="fa-envelope-open-text" placeholder="{{ __('misc.placeholder.email') }}"/>
+        <x-form.input  type="password" name="password" icon="fa-key" placeholder="{{ __('misc.placeholder.password') }}"/>
 
         <button class="btn submit">
-            Entrar
+            {{ __("misc.button.login") }}
         </button>
        <div class="content-forgot-password">
-        <a href="#" class="forgot-password">Esqueceu a senha?</a>
+        <a href="#" class="forgot-password"> {{ __("passwords.forgot-your-password") }} </a>
        </div>
     </form>
  </div>

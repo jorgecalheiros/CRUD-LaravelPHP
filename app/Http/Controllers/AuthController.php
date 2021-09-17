@@ -50,7 +50,7 @@ class AuthController extends Controller
             return redirect(route("users.index"));
         }
         return back()->withErrors([
-            "modal-message" => "Email ou senha incorretos"
+            "modal-message" => __("auth.failed")
         ]);
     }
 
@@ -67,7 +67,7 @@ class AuthController extends Controller
 
         $config = [
             "onlyEdit" => false,
-            "title" => "Criar usuário",
+            "title" => __("user.text.title.create"),
             "method" => "POST",
             "route" => route("auth.store")
         ];
@@ -92,12 +92,12 @@ class AuthController extends Controller
             }
 
             return redirect(route("auth.login"))->with([
-                "success-message" => "Usuário criado com sucesso"
+                "success-message" => __("user.success.store")
             ]);
         } catch (\Throwable $th) {
             Log::error("authController@store " . $th->getMessage());
             return redirect()->back()->withErrors([
-                "modal-message" => "Ocorreu um erro ao cadastrar, tente mais tarde"
+                "modal-message" => __("user.error.store")
             ]);
         }
     }
@@ -114,7 +114,7 @@ class AuthController extends Controller
             throw new Exception();
         } catch (\Throwable $th) {
             return back()->withErrors([
-                "message" => "Não foi possivel fazer logout"
+                "message" => __("user.error.logout")
             ]);
         }
     }

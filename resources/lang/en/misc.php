@@ -26,7 +26,9 @@ return [
         'new' => 'New',
         'create' => 'Create',
         'cancel' => 'Cancel',
+        'edit' => 'update',
         'delete' => 'Delete',
+        'edit-photo' => 'update photo'
     ],
 
     'placeholder' => [
@@ -39,10 +41,10 @@ return [
     'text' => [
         'welcome_screen' => 'Welcome to small CMS application',
         'application_title' => 'Small content manager system',
-        'footer_title' => 'A content manager system built-in Laravel <br /> by Jorge Calheiros de Sousa',
+        'footer_title' => 'A content manager system built-in Laravel by Jorge Calheiros de Sousa',
         'sure' => 'Are you sure?',
         'irreversible_action' => 'This action is irreversible!',
-        'name' => 'Name',
-        'email' => 'E-mail',
+        'name' => 'Name:',
+        'email' => 'E-mail:',
     ]
 ];

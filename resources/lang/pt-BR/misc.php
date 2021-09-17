@@ -26,7 +26,9 @@ return [
         'new' => 'Novo',
         'create' => 'Criar',
         'cancel' => 'Cancelar',
+        'edit' => 'Editar',
         'delete' => 'Excluir',
+        'edit-photo' => 'Editar foto'
     ],
 
     'placeholder' => [
@@ -39,11 +41,11 @@ return [
     'text' => [
         'welcome_screen' => 'Seja bem-vindo mini gerenciador de conteúdos',
         'application_title' => 'Mini gerenciador de conteúdos',
-        'footer_title' => 'Um sistema de gerenciamento de conteudos em Laravel <br /> por Jorge Calheiros de Sousa',
+        'footer_title' => 'Um sistema de gerenciamento de conteudos em Laravel por Jorge Calheiros de Sousa',
         'sure' => 'Tem certeza?',
         'irreversible_action' => 'Essa ação é irreversível!',
-        'name' => 'Nome',
-        'email' => 'E-mail',
+        'name' => 'Nome:',
+        'email' => 'E-mail:',
 
     ]
 

@@ -51,7 +51,7 @@ class UserController extends Controller
 
         $config = [
             "onlyEdit" => true,
-            "title" => "Editar usuário",
+            "title" => __("user.text.title.edit"),
             "method" => "POST",
             "_method" => "PUT",
             "route" => route("users.update", $id)
@@ -76,7 +76,7 @@ class UserController extends Controller
 
             if (!Hash::check($request->input("password"), $user->password)) {
                 return back()->withErrors([
-                    "modal-message" => "Senha incorreta, tente denovo"
+                    "modal-message" => __("auth.password")
                 ]);
             }
 
@@ -84,11 +84,11 @@ class UserController extends Controller
                 throw new Exception();
             }
             return redirect(route("users.show", $id))->with([
-                "success-message" => "Usuário editado com sucesso com sucesso"
+                "success-message" => __("user.success.update")
             ]);
         } catch (\Throwable $th) {
             return back()->withErrors([
-                "modal-message" => "Ocorreu um erro ao editar, tente mais tarde"
+                "modal-message" => "user.error.update"
             ]);
         }
     }
@@ -106,11 +106,11 @@ class UserController extends Controller
                 throw new Exception();
             }
             return redirect(route("auth.login"))->with([
-                "success-message" => "Usuário deletado com sucesso"
+                "success-message" => __("user.success.destroy")
             ]);
         } catch (\Throwable $th) {
             return back()->withErrors([
-                "modal-message" => "Error ao deletar usuário, tente denovo"
+                "modal-message" => __("user.error.destroy")
             ]);
         }
     }

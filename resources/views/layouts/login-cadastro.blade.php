@@ -30,8 +30,7 @@
 <body class="antialiased">
     @yield("content-form")
     <footer class="footer-cadastro-login">
-        Um sistema de gerenciamento de conteudos em Laravel <br>
-        by Jorge Calheiros de Sousa
+        {{ __("misc.text.footer_title") }}
     </footer>
 </body>
 
