@@ -28,6 +28,9 @@
 </head>
 
 <body class="antialiased">
+    <header>
+        <x-system.lang-switch/>
+    </header>
     @yield("content")
 </body>
 </html>

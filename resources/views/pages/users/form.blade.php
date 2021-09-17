@@ -1,4 +1,4 @@
-@extends('templates/login-cadastro')
+@extends('layouts/login-cadastro')
 
 @php
     $onlyEdit = data_get($config,"onlyEdit");

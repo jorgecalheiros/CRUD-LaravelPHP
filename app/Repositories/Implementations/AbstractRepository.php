@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Implementations;
 
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 
@@ -22,6 +23,11 @@ abstract class AbstractRepository
     public function list(): Collection
     {
         return $this->model->all();
+    }
+
+    public function paginate(int $perPage): LengthAwarePaginator
+    {
+        return $this->model->paginate($perPage);
     }
 
     public function findOrFail($id)

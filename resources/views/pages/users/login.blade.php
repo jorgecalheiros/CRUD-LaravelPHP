@@ -1,11 +1,8 @@
-@extends('templates/login-cadastro')
+@extends('layouts/login-cadastro')
 
 @section('title','Login')
 
 @section('content-form')
-    @if (Session::has("message"))
-    <p>{!! Session::get("message") !!}</p>
-    @endif
     <x-system.message />
  <div class="container-form">
     <div class="side-login">

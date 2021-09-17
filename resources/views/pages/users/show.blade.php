@@ -1,14 +1,14 @@
-@extends('templates/default')
+@extends('layouts/default')
 
 
 @section('title', "Laravel")
-
+<x-system.message />
 @section('content')
 <div class="body-false" id="false">.</div>
     <div class="container-max-user">
         <div class="container-user">
             <div class="side-right">
-                <h1 class="title">Seja bem vindo {{ $user->name }} !</h1>
+                <h1 class="title">{{ __("user.text.welcome") }} {{ $user->name }} !</h1>
                 <p class="description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's</p>
             </div>
             <figure class="picture-user">
@@ -17,7 +17,7 @@
         </div>
         <div class="info-person">
             <div class="container-button">
-                <h2 class="title">Informações pessoais</h2>
+                <h2 class="title">{{ __("user.text.personal_information") }}</h2>
                 <button class="btn-icons btn-icons-primary" id="btn-show-user">
                     <i class="fas fa-eye-slash"></i>
                 </button>

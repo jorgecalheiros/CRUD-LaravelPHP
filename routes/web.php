@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\LangController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,3 +29,7 @@ Route::get("create", [AuthController::class, "create"])->name("auth.create");
 Route::post("store", [AuthController::class, "store"])->name("auth.store");
 
 Route::get("logout", [AuthController::class, "logout"])->name("auth.logout");
+
+Route::prefix("system")->group(function () {
+    Route::post("language_switch", [LangController::class, "changeLang"])->name("system.lang.switch");
+});

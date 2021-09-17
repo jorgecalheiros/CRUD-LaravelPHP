@@ -1,0 +1,48 @@
+<?php
+
+return [
+
+    /*
+    |--------------------------------------------------------------------------
+    | Custom Language Lines
+    |--------------------------------------------------------------------------
+    |
+    | Custom application messages
+    */
+
+    'error' => [
+        'default' => 'An error ocurred in this action, try again later!'
+    ],
+
+    'success' => [
+        'default' => 'Action executed successful!',
+    ],
+
+    'button' => [
+        'login' => 'Login',
+        'logout' => 'Logout',
+        'back' => 'Back',
+        'show' => 'Show',
+        'new' => 'New',
+        'create' => 'Create',
+        'cancel' => 'Cancel',
+        'delete' => 'Delete',
+    ],
+
+    'placeholder' => [
+        'name' => 'Enter with your name',
+        'email' => 'Enter with your email',
+        'password' => 'Enter with your password',
+        'password_confirm' => 'Repeat your password',
+    ],
+
+    'text' => [
+        'welcome_screen' => 'Welcome to small CMS application',
+        'application_title' => 'Small content manager system',
+        'footer_title' => 'A content manager system built-in Laravel <br /> by Jorge Calheiros de Sousa',
+        'sure' => 'Are you sure?',
+        'irreversible_action' => 'This action is irreversible!',
+        'name' => 'Name',
+        'email' => 'E-mail',
+    ]
+];

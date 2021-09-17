@@ -22,7 +22,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = $this->repository->list();
+        $users = $this->repository->paginate(5);
         return view("pages.users.index", compact("users"));
     }
     /**
@@ -76,7 +76,7 @@ class UserController extends Controller
 
             if (!Hash::check($request->input("password"), $user->password)) {
                 return back()->withErrors([
-                    "message" => "Senha incorreta, tente denovo"
+                    "modal-message" => "Senha incorreta, tente denovo"
                 ]);
             }
 
@@ -84,7 +84,7 @@ class UserController extends Controller
                 throw new Exception();
             }
             return redirect(route("users.show", $id))->with([
-                "sucess-message" => "Usuário editado com sucesso com sucesso"
+                "success-message" => "Usuário editado com sucesso com sucesso"
             ]);
         } catch (\Throwable $th) {
             return back()->withErrors([
@@ -106,7 +106,7 @@ class UserController extends Controller
                 throw new Exception();
             }
             return redirect(route("auth.login"))->with([
-                "sucess-message" => "Usuário deletado com sucesso"
+                "success-message" => "Usuário deletado com sucesso"
             ]);
         } catch (\Throwable $th) {
             return back()->withErrors([

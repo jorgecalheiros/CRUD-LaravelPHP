@@ -92,7 +92,7 @@ class AuthController extends Controller
             }
 
             return redirect(route("auth.login"))->with([
-                "sucess-message" => "Usuário criado com sucesso"
+                "success-message" => "Usuário criado com sucesso"
             ]);
         } catch (\Throwable $th) {
             Log::error("authController@store " . $th->getMessage());

@@ -13,4 +13,12 @@
             </ul>
         </div>
     @endif
+
+    @if (Session::has("success-message"))
+    <div class="error-message sucess-message">
+        <i class="fas fa-times space"></i>
+        <p class="space">{{ Session::get("success-message") }}</p>
+    </div>
+    @endif
+
 </div>

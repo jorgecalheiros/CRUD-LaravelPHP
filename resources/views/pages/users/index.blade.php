@@ -1,4 +1,4 @@
-@extends('templates/default')
+@extends('layouts/default')
 
 @section('title', "Laravel")
 
@@ -7,11 +7,11 @@
  <p>com Laravel</p>
 
 <div class="container-max-user">
-
     <ul>
         @foreach ($users as $user)
             <li>{{ $user->name }}</li>
         @endforeach
     </ul>
+    {{ $users->links() }}
 </div>
 @endsection
