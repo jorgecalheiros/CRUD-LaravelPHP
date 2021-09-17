@@ -6,6 +6,7 @@ use App\Http\Requests\User\UserUpdate;
 use App\Repositories\Contracts\UserRepositoryContract;
 use Exception;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 
 class UserController extends Controller
 {
@@ -80,16 +81,24 @@ class UserController extends Controller
                 ]);
             }
 
-            if (!$this->repository->update($id, $data)) {
-                throw new Exception();
+            if (!$update = $this->repository->update($id, $data)) {
+                throw new Exception($update);
             }
             return redirect(route("users.show", $id))->with([
                 "success-message" => __("user.success.update")
             ]);
         } catch (\Throwable $th) {
-            return back()->withErrors([
-                "modal-message" => "user.error.update"
-            ]);
+            Log::error("UserController@update " . $th->getMessage());
+
+            $errors = [
+                "modal-message" => __("user.error.update")
+            ];
+
+            if (env("APP_ENV") != "production") {
+                $errors['modal-dev-message'] = $th->getMessage();
+            }
+
+            return redirect()->back()->withErrors($errors);
         }
     }
 
@@ -102,16 +111,24 @@ class UserController extends Controller
     public function destroy($id)
     {
         try {
-            if (!$this->repository->delete($id)) {
-                throw new Exception();
+            if (!$destroy = $this->repository->delete($id)) {
+                throw new Exception($destroy);
             }
             return redirect(route("auth.login"))->with([
                 "success-message" => __("user.success.destroy")
             ]);
         } catch (\Throwable $th) {
-            return back()->withErrors([
+            Log::error("UserController@destroy" . $th->getMessage());
+
+            $errors = [
                 "modal-message" => __("user.error.destroy")
-            ]);
+            ];
+
+            if (env("APP_ENV") != "production") {
+                $errors["modal-dev-message"] = $th->getMessage();
+            }
+
+            return redirect()->back()->withErrors($errors);
         }
     }
 }

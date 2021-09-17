@@ -26,7 +26,7 @@
     @else
     <div class="side-login">
         <h1 class="title">{{ __("misc.text.application_title") }}</h1>
-        <h2 class="title-form">{{ __("user.text.have_account") }}</h2>
+        <h2 class="title-form">{{ __("user.text.title.edit") }}</h2>
         <p class="description">{{ __("user.text.screen_form_description_back") }}</p>
         <br>
         <a href="{{ route('users.show', $user->id) }}" class="btn-a">
@@ -45,9 +45,9 @@
                 <x-form.input type="email" name="email" icon="fa-envelope-open-text" placeholder="{{ __('misc.placeholder.email') }}"  />
                 <x-form.input type="password" name="password" icon="fa-key" placeholder="{{ __('misc.placeholder.password') }}" />
             @else
-                <x-form.input type="text" name="name" icon="fa-user" placeholder="Insira o seu nome" value="{{ $user->name }}"/>
-                <x-form.input type="email" name="email" icon="fa-envelope-open-text" placeholder="Digite seu email" value="{{$user->email}}" />
-                <x-form.input type="password" name="password" icon="fa-key" placeholder="Digite a sua senha" />
+                <x-form.input type="text" name="name" icon="fa-user"  placeholder="{{ __('misc.placeholder.name') }}" value="{{ $user->name }}"/>
+                <x-form.input type="email" name="email" icon="fa-envelope-open-text" placeholder="{{ __('misc.placeholder.email') }}" value="{{$user->email}}" />
+                <x-form.input type="password" name="password" icon="fa-key" placeholder="{{ __('misc.placeholder.password') }}"  />
             @endif
 
             @if (!$onlyEdit)
