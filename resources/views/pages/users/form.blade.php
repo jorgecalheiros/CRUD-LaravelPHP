@@ -6,8 +6,8 @@
     $method = data_get($config, "method");
     $_method = data_get($config,"_method");
     $route = data_get($config,"route");
-    $userName = isset($user->name)?$user->name:"";
-    $userEmail = isset($user->email)?$user->email:"";
+    $userName = $user->name ?? '';;
+    $userEmail = $user->email ?? '';;
 @endphp
 
 @section('title',$title)
