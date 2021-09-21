@@ -1,3 +1,45 @@
+/* HEADER */
+
+header{
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+}
+header .show-user{
+    background-color: #eee;
+    border-radius: 15px;
+    width: 100px;
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+    cursor: pointer;
+    align-items: center;
+    transition:  background 200ms linear;
+    margin-left: 10px;
+    padding-right: 20px;
+}
+header .show-user:hover{
+    background-color: silver;
+    color: white;
+}
+.show-user .icon{
+    background-color: cornflowerblue;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    color: white;
+}
+.show-user .icon i{
+    margin: 6px;
+}
+.select-language{
+    padding: 5px;
+    border: 1px solid #eee;
+    border-radius: 15px;
+    outline: none;
+    color: silver;
+    cursor: pointer;
+}
 /*CONTAINER LOGIN E CADASTRO*/
 
 .container-form{

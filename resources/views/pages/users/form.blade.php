@@ -6,6 +6,8 @@
     $method = data_get($config, "method");
     $_method = data_get($config,"_method");
     $route = data_get($config,"route");
+    $userName = isset($user->name)?$user->name:"";
+    $userEmail = isset($user->email)?$user->email:"";
 @endphp
 
 @section('title',$title)
@@ -40,15 +42,12 @@
             @if ($_method)
                 @method($_method)
             @endif
-            @if (!isset($user))
-                <x-form.input type="text" name="name" icon="fa-user" placeholder="{{ __('misc.placeholder.name') }}"/>
-                <x-form.input type="email" name="email" icon="fa-envelope-open-text" placeholder="{{ __('misc.placeholder.email') }}"  />
-                <x-form.input type="password" name="password" icon="fa-key" placeholder="{{ __('misc.placeholder.password') }}" />
-            @else
-                <x-form.input type="text" name="name" icon="fa-user"  placeholder="{{ __('misc.placeholder.name') }}" value="{{ $user->name }}"/>
-                <x-form.input type="email" name="email" icon="fa-envelope-open-text" placeholder="{{ __('misc.placeholder.email') }}" value="{{$user->email}}" />
-                <x-form.input type="password" name="password" icon="fa-key" placeholder="{{ __('misc.placeholder.password') }}"  />
-            @endif
+
+            <x-form.input type="text" name="name" icon="fa-user"  placeholder="{{ __('misc.placeholder.name') }}" value="{{ $userName }}" />
+
+            <x-form.input type="email" name="email" icon="fa-envelope-open-text" placeholder="{{ __('misc.placeholder.email') }}" value="{{ $userEmail }}" />
+
+            <x-form.input type="password" name="password" icon="fa-key" placeholder="{{ __('misc.placeholder.password') }}"  />
 
             @if (!$onlyEdit)
             <label for="" class="label-input">

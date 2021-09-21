@@ -29,6 +29,7 @@
 
 <body class="antialiased">
     <header>
+        @yield('header')
         <x-system.lang-switch/>
     </header>
     @yield("content-form")

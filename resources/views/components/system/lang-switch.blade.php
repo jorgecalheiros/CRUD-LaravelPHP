@@ -2,7 +2,7 @@
     <form id="langSwitcherForm" action="{{ route('system.lang.switch') }}" method="POST">
         @csrf
 
-        <select id="langSwitcher" name="lang">
+        <select id="langSwitcher" name="lang" class="select-language">
             @foreach(Config::get('languages') as $key => $language)
                 <option
                     value="{{ $key }}"
