@@ -1,4 +1,7 @@
 
+[![https://github.com/Jorge-Calheiros-de-Sousa/CRUD-LaravelPHP/actions/workflows/laravel.yml/badge.svg](https://github.com/Jorge-Calheiros-de-Sousa/CRUD-LaravelPHP/actions/workflows/laravel.yml/badge.svg)](https://github.com/Jorge-Calheiros-de-Sousa/CRUD-LaravelPHP/actions)
+![GitHub](https://img.shields.io/github/license/Jorge-Calheiros-de-Sousa/CRUD-LaravelPHP)
+
 <img src = "resources/img/Logotipo.png">
 
 # Mini gerenciador de conteudos com Laravel
