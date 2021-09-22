@@ -4,8 +4,12 @@ namespace Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
 
-class ExampleTest extends TestCase
+class UserTest extends TestCase
 {
+    public function setUp(): void
+    {
+        parent::setUp();
+    }
     /**
      * A basic test example.
      *

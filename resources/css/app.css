@@ -283,6 +283,7 @@ header .config {
     padding-top: 5%;
     padding-bottom: 5%;
     margin-bottom: 5%;
+    height: fit-content;
 }
 .container-user{
     display: flex;
@@ -517,4 +518,51 @@ header .config {
 }
 .error-message .space:not(:first-child){
     margin-left: 1em;
+}
+
+/*POST*/
+.user-post{
+    display: flex;
+    align-items: center;
+    height: 35px;
+    border-bottom: 1px solid silver;
+}
+.user-post .picture-user{
+    background-color: grey;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+}
+.container-post-show{
+    background-color: white;
+    width: 70%;
+    margin-left: 15%;
+    border-radius: 15px;
+    padding: 10px;
+    margin-bottom: 15px;
+    margin-top: 10px;
+}
+.container-post{
+    background-color: #eee;
+    width: 50%;
+    margin-left: 10%;
+    border-radius: 15px;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+.title-post{
+    font-size: 15px;
+    margin: 10px;
+}
+.content-post{
+    margin: 10px;
+}
+.data-post{
+ border-top: 1px solid silver;
+ display: flex;
+ height: 35px;
+ font-size: 12px;
+ color: rgb(78, 78, 78);
+ align-items: center;
+ justify-content: flex-end;
 }
