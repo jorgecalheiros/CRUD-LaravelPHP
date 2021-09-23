@@ -14,6 +14,11 @@
             {{ __("misc.button.logout") }}
         </button>
     </form>
+    <form action="{{ route('posts.create') }}" method="GET" class="form-logout">
+        <button>
+            {{ __("misc.button.create_post") }}
+        </button>
+    </form>
 @endsection
 
 @section('content')

@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use App\Models\User;
 use PHPUnit\Framework\TestCase;
 
 class UserTest extends TestCase
@@ -15,8 +16,9 @@ class UserTest extends TestCase
      *
      * @return void
      */
-    public function test_view_users()
+    public function test_view_users_controller()
     {
-        $this->assertTrue(true);
+        $users = User::factory(2)->make()->all();
+        $expectedView = view('pages.users.index', compact('users'))->render();
     }
 }

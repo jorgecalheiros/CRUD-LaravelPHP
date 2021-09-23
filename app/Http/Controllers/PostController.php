@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Post\PostStore;
+use App\Http\Requests\Post\PostUpdate;
 use App\Models\Post;
 use App\Repositories\Contracts\PostRepositoryContract;
-use Illuminate\Http\Request;
+use Exception;
+use Illuminate\Support\Facades\Log;
 
 class PostController extends Controller
 {
@@ -34,9 +37,9 @@ class PostController extends Controller
     {
         $config = [
             "onlyEdit" => false,
-            "title" => __("user.text.title.create"),
+            "title" => __("post.text.title.create"),
             "method" => "POST",
-            "route" => route("auth.store")
+            "route" => route("posts.store")
         ];
 
         return view("pages.posts.form", compact("config"));
@@ -48,9 +51,28 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PostStore $request)
     {
-        //
+        try {
+            $data = $request->except(["_token"]);
+
+            if (!$created = $this->repository->create($data)) {
+                throw new Exception($created);
+            }
+            return redirect(route("post.index"))->with([
+                "success-message" => __("post.success.store")
+            ]);
+        } catch (\Throwable $th) {
+            Log::error("PostController@store " . $th->getMessage());
+            $errors = [
+                "modal-message" => __("post.error.store")
+            ];
+            if (env("APP_ENV") != "production") {
+                $errors['modal-dev-message'] = $th->getMessage();
+            }
+
+            return redirect()->back()->withErrors($errors);
+        }
     }
 
     /**
@@ -78,10 +100,10 @@ class PostController extends Controller
 
         $config = [
             "onlyEdit" => true,
-            "title" => __("user.text.title.edit"),
+            "title" => __("post.text.title.edit"),
             "method" => "POST",
             "_method" => "PUT",
-            "route" => route("users.update", $id)
+            "route" => route("posts.update", $id)
         ];
 
         return view("pages.posts.form", compact("user", "config"));
@@ -94,9 +116,31 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(PostUpdate $request, $id)
     {
-        //
+        try {
+            $data = $request->except(["_token", "_method"]);
+
+            if (!$updated = $this->repository->update($id, $data)) {
+                throw new Exception($updated);
+            }
+
+            return redirect(route("post.show", $id))->with([
+                "success-message" => __("post.success.update")
+            ]);
+        } catch (\Throwable $th) {
+            Log::error("PostController@update" . $th->getMessage());
+
+            $errors = [
+                "modal-message" => _("post.error.update")
+            ];
+
+            if (env("APP_ENV") != "production") {
+                $errors["modal-dev-message"] = $th->getMessage();
+            }
+
+            return redirect()->back()->withErrors($errors);
+        }
     }
 
     /**
