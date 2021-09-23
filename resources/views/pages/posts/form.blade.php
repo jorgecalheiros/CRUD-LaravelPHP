@@ -16,11 +16,11 @@
 <div class="container-form">
     @if (!$onlyEdit)
         <div class="side-post">
-            CRIAR POST
+           {{ __("post.text.create_account") }}
         </div>
     @else
     <div class="side-post">
-        UPDATE POST
+        {{ __("post.text.edit_account") }}
     </div>
     @endif
         <form action="{{ $route }}" class="side-form" method="{{ $method }}">
