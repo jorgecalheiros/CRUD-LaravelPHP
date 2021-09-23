@@ -15,7 +15,7 @@ class UserTest extends TestCase
      *
      * @return void
      */
-    public function test_example()
+    public function test_view_users()
     {
         $this->assertTrue(true);
     }

@@ -84,7 +84,7 @@ class UserTest extends TestCase
             "email" => "teste@gmail.com",
             "password" => 12345678
         ]);
-        $response->assertStatus(202);
+        $response->assertStatus(302);
     }
 
     /**
@@ -96,7 +96,8 @@ class UserTest extends TestCase
             "email" => "teste@gmail.com",
             "password" => 12345678
         ]);
-        $response->assertStatus(201);
+
+        $response->assertStatus(302);
     }
 
     /**
@@ -109,7 +110,7 @@ class UserTest extends TestCase
             "email" => "teste@gmail.com",
             "password" => 12345678
         ]);
-        $response->assertStatus(201);
+        $response->assertStatus(302);
     }
 
     /**
@@ -118,6 +119,6 @@ class UserTest extends TestCase
     public function test_delete_user()
     {
         $response = $this->delete("/users/1");
-        $response->assertStatus(200);
+        $response->assertStatus(302);
     }
 }
