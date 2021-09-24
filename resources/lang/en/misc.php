@@ -28,7 +28,8 @@ return [
         'cancel' => 'Cancel',
         'edit' => 'update',
         'delete' => 'Delete',
-        'edit-photo' => 'update photo'
+        'edit-photo' => 'update photo',
+        'create_post' => "create post"
     ],
 
     'placeholder' => [

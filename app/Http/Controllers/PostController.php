@@ -55,11 +55,11 @@ class PostController extends Controller
     {
         try {
             $data = $request->except(["_token"]);
-
+            $data["user_id"] = auth()->user()->id;
             if (!$created = $this->repository->create($data)) {
                 throw new Exception($created);
             }
-            return redirect(route("post.index"))->with([
+            return redirect(route("posts.index"))->with([
                 "success-message" => __("post.success.store")
             ]);
         } catch (\Throwable $th) {
@@ -96,7 +96,7 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        $user = $this->repository->findOrFail($id);
+        $post = $this->repository->findOrFail($id);
 
         $config = [
             "onlyEdit" => true,
@@ -106,7 +106,7 @@ class PostController extends Controller
             "route" => route("posts.update", $id)
         ];
 
-        return view("pages.posts.form", compact("user", "config"));
+        return view("pages.posts.form", compact("post", "config"));
     }
 
     /**
@@ -120,12 +120,13 @@ class PostController extends Controller
     {
         try {
             $data = $request->except(["_token", "_method"]);
+            $data["user_id"] = auth()->user()->id;
 
             if (!$updated = $this->repository->update($id, $data)) {
                 throw new Exception($updated);
             }
 
-            return redirect(route("post.show", $id))->with([
+            return redirect(route("posts.show", $id))->with([
                 "success-message" => __("post.success.update")
             ]);
         } catch (\Throwable $th) {
@@ -149,8 +150,27 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post)
+    public function destroy($id)
     {
-        //
+        try {
+            if (!$destroy = $this->repository->delete($id)) {
+                throw new Exception($destroy);
+            }
+            return redirect(route("posts.index"))->with([
+                "success-message" => __("post.success.destroy")
+            ]);
+        } catch (\Throwable $th) {
+            Log::error("PostController@destroy" . $th->getMessage());
+
+            $errors = [
+                "modal-message" => __("post.error.destroy")
+            ];
+
+            if (env("APP_ENV") != "production") {
+                $errors["modal-dev-message"] = $th->getMessage();
+            }
+
+            return redirect()->back()->withErrors($errors);
+        }
     }
 }

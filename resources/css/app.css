@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* HEADER */
 
 header{
@@ -332,10 +336,6 @@ header .config {
     opacity: 1;
     transition: opacity 200ms linear;
 }
-.hidden{
-    pointer-events: none;
-    opacity: 0;
-}
 .nav ul{
     display: flex;
     justify-content: center;
@@ -441,7 +441,6 @@ header .config {
     margin-left: 25%;
     padding: 10px;
     border: 1px solid silver;
-    border-radius: 15px;
 }
 .container-show .picture{
     display: flex;
@@ -546,7 +545,6 @@ header .config {
     background-color: #eee;
     width: 50%;
     margin-left: 10%;
-    border-radius: 15px;
     padding: 10px;
     margin-bottom: 15px;
 }

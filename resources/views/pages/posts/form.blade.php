@@ -6,8 +6,8 @@
     $method = data_get($config, "method");
     $_method = data_get($config,"_method");
     $route = data_get($config,"route");
-    $userName = $user->name ?? '';;
-    $userEmail = $user->email ?? '';;
+    $postTitle = $post->title ?? "";
+    $postContent = $post->content ?? "";
 @endphp
 
 
@@ -23,16 +23,27 @@
         {{ __("post.text.edit_account") }}
     </div>
     @endif
-        <form action="{{ $route }}" class="side-form" method="{{ $method }}">
+        <form action="{{ $route }}" class="side-form" method="{{ $method }}" id="postSaveForm">
             @csrf
             @if ($_method)
                 @method($_method)
             @endif
-                <input type="text" name="title" placeholder="">
-                <textarea name="content" id="" cols="30" rows="10"></textarea>
-            <button class="btn submit">
+                <x-form.input type="text" name="title" icon="none"  placeholder="{{ __('post.placeholder.title') }}" value="{{ $postTitle }}" />
+
+                <div id="quillEditor">
+                    {!! $postContent !!}
+                </div>
+                <textarea name="content" cols="30" rows="10" id="content" style="visibility:hidden;height:0;width:0;"></textarea>
+            <button class="btn submit" type="button" id="savePost">
                 {{ $title }}
             </button>
         </form>
  </div>
+    <script type="text/javascript">
+        document.getElementById('savePost').addEventListener('click', function() {
+            var postContent = document.querySelector("#quillEditor div").innerHTML;
+            document.getElementById('content').value = postContent;
+            document.getElementById('postSaveForm').submit();
+        });
+    </script>
 @endsection

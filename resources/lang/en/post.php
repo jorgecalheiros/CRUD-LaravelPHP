@@ -23,4 +23,8 @@ return [
         'update' => 'Post updated with success!',
         'destroy' => 'Post deleted with success!',
     ],
+
+    'placeholder' => [
+        "title" => "Insert title"
+    ]
 ];

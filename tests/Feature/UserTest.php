@@ -22,10 +22,33 @@ class UserTest extends TestCase
     /**
      * @return void
      */
+    public function test_view_one_users_when_user_not_login()
+    {
+        $user = User::factory()->create();
+        $this->actingAs($user);
+        $response = $this->get("/users/1");
+
+        $response->assertStatus(200);
+    }
+
+    /**
+     * @return void
+     */
     public function test_view_one_users()
     {
         $response = $this->get("/users/1");
         $response->assertStatus(302);
+    }
+
+    /**
+     * @return void
+     */
+    public function test_view_users_when_user_not_login()
+    {
+        $user = User::factory()->create();
+        $this->actingAs($user);
+        $response = $this->get("/users/");
+        $response->assertStatus(200);
     }
 
     /**
@@ -61,6 +84,7 @@ class UserTest extends TestCase
     public function test_view_create()
     {
         $response = $this->get("/create");
+        $response->assertSee("name=\"reppassword\"", false);
         $response->assertStatus(200);
     }
 
@@ -69,10 +93,21 @@ class UserTest extends TestCase
      */
     public function test_view_update()
     {
+        $user = User::factory()->create();
+        $this->actingAs($user);
+        $response = $this->get("/users/1/edit");
+        $response->assertDontSee("name=\"reppassword\"");
+        $response->assertStatus(200);
+    }
+
+    /**
+     * @return void
+     */
+    public function test_view_update_when_user_not_login()
+    {
         $response = $this->get("/users/1/edit");
         $response->assertStatus(302);
     }
-
 
     /**
      * @return void

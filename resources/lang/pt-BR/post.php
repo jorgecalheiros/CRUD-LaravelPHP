@@ -19,8 +19,12 @@ return [
     ],
 
     'success' => [
-        'store' => 'Usuário cadastrado com sucesso!',
-        'update' => 'Usuário atualizado com sucesso!',
-        'destroy' => 'Usuário deletado com sucesso!',
+        'store' => 'Post criando com sucesso!',
+        'update' => 'Post atualizado com sucesso!',
+        'destroy' => 'Post deletado com sucesso!',
     ],
+
+    'placeholder' => [
+        "title" => "Insira o titulo"
+    ]
 ];

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\User\UserUpdate;
+use App\Models\User;
 use App\Repositories\Contracts\UserRepositoryContract;
 use Exception;
 use Illuminate\Support\Facades\Hash;
@@ -24,6 +25,7 @@ class UserController extends Controller
     public function index()
     {
         $users = $this->repository->paginate(5);
+
         return view("pages.users.index", compact("users"));
     }
     /**

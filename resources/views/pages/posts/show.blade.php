@@ -18,7 +18,7 @@
             <h1>{{ $post->title }}</h1>
         </div>
         <div class="content-post">
-          {{ $post->content }}
+          {!! $post->content !!}
         </div>
         <div class="data-post">
             <span>{{ $post->created_at }}</span>

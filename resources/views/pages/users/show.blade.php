@@ -5,7 +5,7 @@
 <x-system.message />
 @section('content')
 <div class="body-false" id="false">.</div>
-    <div class="container-show">
+    <div class="container-show shadow-md rounded-xl">
         <div class="header-welcome">
             <h1 class="title">{{ __("user.text.welcome") }} {{ $user->name }} !</h1>
             <p class="description">{{ __("user.text.screen_show_description") }}</p>

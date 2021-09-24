@@ -25,7 +25,7 @@
 <div class="container-max-user">
     <ul>
         @foreach ($posts as $post)
-        <div class="container-post">
+        <div class="container-post rounded-xl shadow-md hover:shadow-xl">
             <div class="user-post">
                 <figure class="picture-user">
 
@@ -38,7 +38,7 @@
                 <h1>{{ $post->title }}</h1>
             </div>
             <div class="content-post">
-              {{ $post->content }}
+              {!! $post->content !!}
             </div>
             <div class="data-post">
                 <span>{{ $post->created_at }}</span>
