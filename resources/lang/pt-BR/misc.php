@@ -37,6 +37,7 @@ return [
         'email' => 'Digite seu e-mail',
         'password' => 'Digite sua senha',
         'password_confirm' => 'Repita sua senha',
+        'password_edit_confirmation' => "Confime a sua senha",
     ],
 
     'text' => [

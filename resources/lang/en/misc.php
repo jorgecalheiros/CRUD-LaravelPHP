@@ -37,6 +37,7 @@ return [
         'email' => 'Enter with your email',
         'password' => 'Enter with your password',
         'password_confirm' => 'Repeat your password',
+        'password_edit_confirmation' => "Confirm your password",
     ],
 
     'text' => [

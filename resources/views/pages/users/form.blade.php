@@ -8,6 +8,7 @@
     $route = data_get($config,"route");
     $userName = $user->name ?? '';;
     $userEmail = $user->email ?? '';;
+    $placeholder= $onlyEdit? __('misc.placeholder.password_edit_confirmation') :__('misc.placeholder.password');
 @endphp
 
 @section('title',$title)
@@ -47,12 +48,10 @@
 
             <x-form.input type="email" name="email" icon="fa-envelope-open-text" placeholder="{{ __('misc.placeholder.email') }}" value="{{ $userEmail }}" />
 
-            <x-form.input type="password" name="password" icon="fa-key" placeholder="{{ __('misc.placeholder.password') }}"  />
+            <x-form.input type="password" name="password" icon="fa-key"  placeholder="{{ $placeholder }}" />
 
             @if (!$onlyEdit)
-            <label for="" class="label-input">
-                <i class="fas fa-key icons"></i></i><input type="password" name="reppassword" id="reppassword" autocomplete="off" placeholder="{{ __('misc.placeholder.password_confirm') }}">
-            </label>
+            <x-form.input type="password" name="password_confirmation" icon="fa-key" placeholder="{{ __('misc.placeholder.password_confirm') }}"/>
             @endif
 
             <button class="btn submit">
