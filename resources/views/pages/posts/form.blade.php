@@ -33,7 +33,7 @@
                 <div id="quillEditor">
                     {!! $postContent !!}
                 </div>
-                <textarea name="content" cols="30" rows="10" id="content" style="visibility:hidden;height:0;width:0;"></textarea>
+                <x-form.textarea name="content"/>
             <button class="btn submit" type="button" id="savePost">
                 {{ $title }}
             </button>
