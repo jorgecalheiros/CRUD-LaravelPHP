@@ -3,11 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\User\UserUpdate;
-use App\Models\User;
 use App\Repositories\Contracts\UserRepositoryContract;
 use Exception;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Log;
 
 class UserController extends Controller
 {
@@ -90,17 +88,7 @@ class UserController extends Controller
                 "success-message" => __("user.success.update")
             ]);
         } catch (\Throwable $th) {
-            Log::error("UserController@update " . $th->getMessage());
-
-            $errors = [
-                "modal-message" => __("user.error.update")
-            ];
-
-            if (env("APP_ENV") != "production") {
-                $errors['modal-dev-message'] = $th->getMessage();
-            }
-
-            return redirect()->back()->withErrors($errors);
+            return $this->redirectWithErrors($th, __("user.error.update"));
         }
     }
 
@@ -120,17 +108,7 @@ class UserController extends Controller
                 "success-message" => __("user.success.destroy")
             ]);
         } catch (\Throwable $th) {
-            Log::error("UserController@destroy" . $th->getMessage());
-
-            $errors = [
-                "modal-message" => __("user.error.destroy")
-            ];
-
-            if (env("APP_ENV") != "production") {
-                $errors["modal-dev-message"] = $th->getMessage();
-            }
-
-            return redirect()->back()->withErrors($errors);
+            return $this->redirectWithErrors($th, __("user.error.destroy"));
         }
     }
 }

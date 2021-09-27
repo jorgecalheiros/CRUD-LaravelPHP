@@ -4,10 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Post\PostStore;
 use App\Http\Requests\Post\PostUpdate;
-use App\Models\Post;
 use App\Repositories\Contracts\PostRepositoryContract;
 use Exception;
-use Illuminate\Support\Facades\Log;
 
 class PostController extends Controller
 {
@@ -63,15 +61,7 @@ class PostController extends Controller
                 "success-message" => __("post.success.store")
             ]);
         } catch (\Throwable $th) {
-            Log::error("PostController@store " . $th->getMessage());
-            $errors = [
-                "modal-message" => __("post.error.store")
-            ];
-            if (env("APP_ENV") != "production") {
-                $errors['modal-dev-message'] = $th->getMessage();
-            }
-
-            return redirect()->back()->withErrors($errors);
+            return $this->redirectWithErrors($th, __("post.error.store"));
         }
     }
 
@@ -130,17 +120,7 @@ class PostController extends Controller
                 "success-message" => __("post.success.update")
             ]);
         } catch (\Throwable $th) {
-            Log::error("PostController@update" . $th->getMessage());
-
-            $errors = [
-                "modal-message" => _("post.error.update")
-            ];
-
-            if (env("APP_ENV") != "production") {
-                $errors["modal-dev-message"] = $th->getMessage();
-            }
-
-            return redirect()->back()->withErrors($errors);
+            return $this->redirectWithErrors($th, __("post.error.update"));
         }
     }
 
@@ -160,17 +140,7 @@ class PostController extends Controller
                 "success-message" => __("post.success.destroy")
             ]);
         } catch (\Throwable $th) {
-            Log::error("PostController@destroy" . $th->getMessage());
-
-            $errors = [
-                "modal-message" => __("post.error.destroy")
-            ];
-
-            if (env("APP_ENV") != "production") {
-                $errors["modal-dev-message"] = $th->getMessage();
-            }
-
-            return redirect()->back()->withErrors($errors);
+            return $this->redirectWithErrors($th, __("post.error.destroy"));
         }
     }
 }

@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\User\UserStore;
 use Exception;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Repositories\Contracts\UserRepositoryContract;
 use Illuminate\Support\Facades\Hash;
@@ -42,26 +41,12 @@ class AuthController extends Controller
     public function authenticate(LoginRequest $request)
     {
         $credentials = $request->except("_token");
-
         try {
-            if (Auth::attempt($credentials)) {
-                $request->session()->regenerate();
-                return redirect(route("users.index"));
-            } else {
-                throw new Exception($credentials);
-            }
+            $request->authenticate($credentials);
+
+            return redirect(route("users.index"));
         } catch (\Throwable $th) {
-            Log::error("AuthController@authenticate" . $th->getMessage());
-
-            $errors = [
-                "modal-message" => __("auth.failed")
-            ];
-
-            if (env("APP_ENV") != "production") {
-                $errors['modal-dev-message'] = $th->getMessage();
-            }
-
-            return redirect()->back()->withErrors($errors);
+            return $this->redirectWithErrors($th, __("auth.failed"));
         }
     }
 
@@ -106,15 +91,7 @@ class AuthController extends Controller
                 "success-message" => __("user.success.store")
             ]);
         } catch (\Throwable $th) {
-            Log::error("authController@store " . $th->getMessage());
-            $errors = [
-                "modal-message" => __("user.error.store")
-            ];
-            if (env("APP_ENV") != "production") {
-                $errors['modal-dev-message'] = $th->getMessage();
-            }
-
-            return redirect()->back()->withErrors($errors);
+            return $this->redirectWithErrors($th, __("user.error.store"));
         }
     }
 
@@ -130,17 +107,7 @@ class AuthController extends Controller
                 throw new Exception($logout);
             }
         } catch (\Throwable $th) {
-            Log::error("AuthController@logout" . $th->getMessage());
-
-            $errors = [
-                "modal-message" => __("user.error.logout")
-            ];
-
-            if (env("APP_ENV") != "production") {
-                $errors["modal-dev-message"] = $th->getMessage();
-            }
-
-            return redirect()->back()->withErrors($errors);
+            return $this->redirectWithErrors($th, __("user.error.logout"));
         }
     }
 }
