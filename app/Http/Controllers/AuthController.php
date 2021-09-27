@@ -80,10 +80,7 @@ class AuthController extends Controller
     public function store(UserStore $request)
     {
         try {
-            $data = $request->except(["_token", "password_confirmation"]);
-            $data["password"] = Hash::make($data["password"]);
-
-            if (!$created = $this->repository->create($data)) {
+            if (!$created = $this->repository->create($request->getUserData())) {
                 throw new Exception($created);
             }
 

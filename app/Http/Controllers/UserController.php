@@ -71,7 +71,6 @@ class UserController extends Controller
     public function update(UserUpdate $request, $id)
     {
         try {
-            $data = $request->except(["_token", "_method"]);
 
             $user = $this->repository->findOrFail($id);
 
@@ -81,7 +80,8 @@ class UserController extends Controller
                 ]);
             }
 
-            if (!$update = $this->repository->update($id, $data)) {
+
+            if (!$update = $this->repository->update($id, $request->getUserData())) {
                 throw new Exception($update);
             }
             return redirect(route("users.show", $id))->with([

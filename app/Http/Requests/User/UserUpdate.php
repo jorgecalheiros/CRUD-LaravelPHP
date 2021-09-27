@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\User;
 
+use Hash;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UserUpdate extends FormRequest
@@ -28,5 +29,21 @@ class UserUpdate extends FormRequest
             "email" => "required|email",
             "password" => "required|min:8"
         ];
+    }
+
+    /**
+     * Return only user data and Hash the password if exists
+     */
+    public function getUserData()
+    {
+        $data = $this->except(['_token', '_method']);
+
+        if (array_key_exists("password", $data) && $data["password"]) {
+            $data["password"] =  Hash::make($data["password"]);
+        } elseif (array_key_exists("password", $data) && empty($data["password"])) {
+            unset($data["password"]);
+        }
+
+        return $data;
     }
 }
