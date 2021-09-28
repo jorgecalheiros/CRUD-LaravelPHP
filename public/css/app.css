@@ -32038,19 +32038,19 @@ header .show-user:hover{
   padding: 0 5px;
 }
 
-.btn{
-  width: 80%;
-  margin-left: 10%;
-  color: white;
-  font-size: 16px;
-  font-weight: bolder;
-  border: 0;
-  border-radius: 15px;
-  height: 50px;
-  cursor: pointer;
-  transition: opacity 200ms linear;
-  background-color: silver;
-}
+/*.btn{
+    width: 80%;
+    margin-left: 10%;
+    color: white;
+    font-size: 16px;
+    font-weight: bolder;
+    border: 0;
+    border-radius: 15px;
+    height: 50px;
+    cursor: pointer;
+    transition: opacity 200ms linear;
+    background-color: silver;
+}*/
 
 .btn-a{
   color: white;
@@ -32510,6 +32510,7 @@ header .config {
   margin-left: 10%;
   padding: 10px;
   margin-bottom: 15px;
+  cursor: pointer;
 }
 
 .title-post{
@@ -32529,6 +32530,30 @@ header .config {
   color: rgb(78, 78, 78);
   align-items: center;
   justify-content: flex-end;
+}
+
+/*  ALTERAÇÕES  */
+
+.ql-editor{
+  height: 300px !important;
+}
+
+.form-button--{
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 0;
+}
+
+.hidden--{
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 200ms linear;
+}
+
+.sm\:mt-40{
+  margin-top: 5em !important;
+  margin-bottom: 5em !important;
 }
 
 @media (min-width: 640px) {

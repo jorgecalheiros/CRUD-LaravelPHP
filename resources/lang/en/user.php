@@ -14,22 +14,25 @@ return [
         'title' => [
             'create' => 'User create',
             'show' => 'Show user ',
-            'edit' => 'Edit user',
+            'edit' => 'Update user',
         ],
-
-        'screen_show_description' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. (EN)',
-        'screen_form_description' => 'If you already have an account then use login button above',
-        'screen_form_description_back' => 'If you not want edit these informations now, then click in the button above',
-        'do_account' => "If you don't have an account, click on the button below to create an account",
-        'personal_information' => 'Personal informations',
+        'Login' => "Sing in",
+        'Description' => 'Sign in to access yout account',
+        'Description_signup' => 'Sign Up to access yout account',
+        'Description_update' => 'Modify your account data',
+        'Forgot' => 'Forgot password ?',
         'edit_account' => 'Edit account',
         'delete_account' => 'Delete account',
         'create_account' => "Create account",
         'have_account' => 'Already have an account?',
         'dont_have_account' => "Don't have an account?",
-        'welcome' => 'Welcome ',
-        'recent-logins' => "Recent logins",
-        'account' => "Log in to one of your accounts"
+        'SignUp' => "SignUp",
+        'sign-with' => 'or sign-in with',
+        'sign-up-with' => 'or sign-up with',
+        'back_to_pag' => 'Do you want to go back to the home page? click in',
+        'back' => 'back',
+        'title-profile' => 'Profile Description',
+        'text-profile' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eget laoreet diam, id luctus lectus. Ut consectetur nisl ipsum, et faucibus sem finibus vitae. Maecenas aliquam dolor at dignissim commodo. Etiam a aliquam tellus, et suscipit dolor. Proin auctor nisi velit, quis aliquet sapien viverra a.(EN)'
     ],
 
     'error' => [

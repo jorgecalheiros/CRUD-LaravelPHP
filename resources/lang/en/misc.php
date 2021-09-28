@@ -26,7 +26,7 @@ return [
         'new' => 'New',
         'create' => 'Create',
         'cancel' => 'Cancel',
-        'edit' => 'update',
+        'edit' => 'Update',
         'delete' => 'Delete',
         'edit-photo' => 'update photo',
         'create_post' => "create post"
@@ -39,7 +39,12 @@ return [
         'password_confirm' => 'Repeat your password',
         'password_edit_confirmation' => "Confirm your password",
     ],
-
+    'label' => [
+        'email' => 'Email Address',
+        'password' => 'Password',
+        'name' => 'Name',
+        'password_confirm' => 'Confirm your password'
+    ],
     'text' => [
         'welcome_screen' => 'Welcome to small CMS application',
         'application_title' => 'Small content manager system',

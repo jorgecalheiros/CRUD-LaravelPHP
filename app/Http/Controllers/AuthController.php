@@ -63,7 +63,7 @@ class AuthController extends Controller
 
         $config = [
             "onlyEdit" => false,
-            "title" => __("user.text.title.create"),
+            "title" => __("user.text.SignUp"),
             "method" => "POST",
             "route" => route("auth.store")
         ];

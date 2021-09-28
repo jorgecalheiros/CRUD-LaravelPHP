@@ -16,20 +16,23 @@ return [
             'show' => 'Exibir usuário ',
             'edit' => 'Editar usuário',
         ],
-
-        'screen_show_description' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. (pt-BR)',
-        'screen_form_description' => 'Caso já possua uma conta clique no botão abaixo para efetuar o login',
-        'do_account' => 'Caso não possua uma conta clique no botão abaixo para criar uma conta',
-        'screen_form_description_back' => 'Caso não queira editar informações da sua conta clique no botão abaixo',
-        'personal_information' => 'Informações pessoais',
+        'Login' => "Entrar",
+        'Description' => 'Entre para acessar a sua conta',
+        'Description_signup' => 'Cadastre-se para acessar a sua conta',
+        'Description_update' => 'Modifique os dados da sua conta',
+        'Forgot' => 'Esqueceu a senha ?',
         'edit_account' => 'Editar conta',
         'delete_account' => 'Excluir conta',
         'create_account' => "Criar conta",
         'have_account' => 'Já possui uma conta?',
         'dont_have_account' => "Não possui uma conta ?",
-        'welcome' => 'Seja bem-vindo ',
-        'recent-logins' => "Login recentes",
-        'account' => "Fassa login em uma de suas contas"
+        'SignUp' => "Cadastre-se",
+        'sign-with' => 'ou entre como',
+        'sign-up-with' => 'ou cadastre-se com',
+        'back_to_pag' => 'Quer voltar para a pagina inicial? clique em',
+        'back' => 'voltar',
+        'title-profile' => 'Descrição do perfil',
+        'text-profile' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eget laoreet diam, id luctus lectus. Ut consectetur nisl ipsum, et faucibus sem finibus vitae. Maecenas aliquam dolor at dignissim commodo. Etiam a aliquam tellus, et suscipit dolor. Proin auctor nisi velit, quis aliquet sapien viverra a.(PT-BR)'
     ],
 
     'error' => [

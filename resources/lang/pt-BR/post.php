@@ -7,9 +7,6 @@ return [
             'show' => 'Exibir Post ',
             'edit' => 'Editar Post',
         ],
-        'edit_account' => 'Editar Post',
-        'delete_account' => 'Excluir Post',
-        'create_account' => "Criar Post",
     ],
 
     'error' => [

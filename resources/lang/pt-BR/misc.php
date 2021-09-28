@@ -40,6 +40,13 @@ return [
         'password_edit_confirmation' => "Confime a sua senha",
     ],
 
+    'label' => [
+        'email' => 'Endereço de Email',
+        'password' => 'Senha',
+        'name' => 'Nome',
+        'password_confirm' => 'Confirme a sua senha'
+    ],
+
     'text' => [
         'welcome_screen' => 'Seja bem-vindo mini gerenciador de conteúdos',
         'application_title' => 'Mini gerenciador de conteúdos',

@@ -23,11 +23,6 @@ class Input extends Component
     public $placeholder;
 
     /**
-     * Specify icon of input field (optional)
-     */
-    public $icon;
-
-    /**
      * The input value (optional)
      */
     public $value;
@@ -38,18 +33,23 @@ class Input extends Component
     public $onlyRead;
 
     /**
+     * Class of input
+     */
+    public $class;
+
+    /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($type, $name, $placeholder = '', $icon = '', $value = '', $onlyRead = false)
+    public function __construct($type, $name, $placeholder = '', $value = '', $class = '', $onlyRead = false)
     {
         $this->type = $type;
         $this->name = $name;
         $this->placeholder = $placeholder;
-        $this->icon = $icon;
         $this->value = $value;
         $this->onlyRead = $onlyRead;
+        $this->class = $class;
     }
 
     /**

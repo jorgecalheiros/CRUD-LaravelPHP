@@ -140,7 +140,7 @@ header .show-user:hover{
     color: cornflowerblue;
     padding: 0 5px;
 }
-.btn{
+/*.btn{
     width: 80%;
     margin-left: 10%;
     color: white;
@@ -152,7 +152,7 @@ header .show-user:hover{
     cursor: pointer;
     transition: opacity 200ms linear;
     background-color: silver;
-}
+}*/
 .btn-a{
     color: white;
     font-size: 16px;
@@ -547,6 +547,7 @@ header .config {
     margin-left: 10%;
     padding: 10px;
     margin-bottom: 15px;
+    cursor: pointer;
 }
 .title-post{
     font-size: 15px;
@@ -563,4 +564,25 @@ header .config {
  color: rgb(78, 78, 78);
  align-items: center;
  justify-content: flex-end;
+}
+
+
+/*  ALTERAÇÕES  */
+
+.ql-editor{
+    height: 300px !important;
+}
+.form-button--{
+    width: fit-content;
+    margin: 0;
+}
+
+.hidden--{
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 200ms linear;
+}
+.sm\:mt-40{
+    margin-top: 5em !important;
+    margin-bottom: 5em !important;
 }

@@ -33,7 +33,9 @@
         @yield('header')
         <x-system.lang-switch/>
     </header>
+
     @yield("content-form")
+
     <footer class="footer-cadastro-login">
         {{ __("misc.text.footer_title") }}
     </footer>
