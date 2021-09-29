@@ -29,19 +29,18 @@ class LoginRequest extends FormRequest
     public function rules()
     {
         return [
-            "email" => "required|email",
+            "email" => "required|email|unique:users",
             "password" => "required|min:8"
         ];
     }
 
-    public function authenticate($credentials)
+    public function authenticate()
     {
-        if (!Auth::attempt($credentials)) {
+        if (!Auth::attempt($this->only("email", "password"))) {
             throw ValidationException::withMessages([
-                "message" => __('auth.failed')
+                "modal-message" => __('auth.failed')
             ]);
-        } else {
-            $this->session()->regenerate();
         }
+        $this->session()->regenerate();
     }
 }
