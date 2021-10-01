@@ -29,7 +29,9 @@ return [
         'edit' => 'Editar',
         'delete' => 'Excluir',
         'edit-photo' => 'Editar foto',
-        'create_post' => "Criar post"
+        'create_post' => "Criar post",
+        'account' => 'Conta',
+        'setting' => 'Configurações'
     ],
 
     'placeholder' => [
@@ -38,12 +40,14 @@ return [
         'password' => 'Digite sua senha',
         'password_confirm' => 'Repita sua senha',
         'password_edit_confirmation' => "Confime a sua senha",
+        'phone' => 'Digite seu telefone',
     ],
 
     'label' => [
         'email' => 'Endereço de Email',
         'password' => 'Senha',
         'name' => 'Nome',
+        'phone' => 'Telefone',
         'password_confirm' => 'Confirme a sua senha'
     ],
 
@@ -55,6 +59,8 @@ return [
         'irreversible_action' => 'Essa ação é irreversível!',
         'name' => 'Nome:',
         'email' => 'E-mail:',
+        'phone' => 'Telefone',
+        'User' => 'Usuários',
 
     ]
 

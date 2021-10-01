@@ -29,7 +29,9 @@ return [
         'edit' => 'Update',
         'delete' => 'Delete',
         'edit-photo' => 'update photo',
-        'create_post' => "create post"
+        'create_post' => "create post",
+        'account' => 'Account',
+        'setting' => 'Setting'
     ],
 
     'placeholder' => [
@@ -38,11 +40,13 @@ return [
         'password' => 'Enter with your password',
         'password_confirm' => 'Repeat your password',
         'password_edit_confirmation' => "Confirm your password",
+        'phone' => 'Enter with your phone',
     ],
     'label' => [
         'email' => 'Email Address',
         'password' => 'Password',
         'name' => 'Name',
+        'phone' => 'Phone',
         'password_confirm' => 'Confirm your password'
     ],
     'text' => [
@@ -53,5 +57,7 @@ return [
         'irreversible_action' => 'This action is irreversible!',
         'name' => 'Name:',
         'email' => 'E-mail:',
+        'phone' => 'Phone',
+        'User' => 'Users',
     ]
 ];
