@@ -17,7 +17,7 @@ class Controller extends BaseController
     {
         $controller = request()->route()->action["controller"];
 
-        Log::error($controller . "---" . $th->getMessage());
+        Log::error($controller . "---" . $th->getMessage() . PHP_EOL . $th->getTraceAsString());
 
         $errors = [
             "modal-message" => $userMessage

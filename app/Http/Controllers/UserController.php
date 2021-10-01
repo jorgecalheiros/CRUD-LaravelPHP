@@ -74,16 +74,10 @@ class UserController extends Controller
 
             $user = $this->repository->findOrFail($id);
 
-            if (!Hash::check($request->input("password"), $user->password)) {
-                return back()->withErrors([
-                    "modal-message" => __("auth.password")
-                ]);
-            }
-
-
-            if (!$update = $this->repository->update($id, $request->getUserData())) {
+            if (!$update = $this->repository->update($id, $request->getUserData($user))) {
                 throw new Exception($update);
             }
+
             return redirect(route("users.show", $id))->with([
                 "success-message" => __("user.success.update")
             ]);

@@ -4,13 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\User\UserStore;
-use App\Mail\NewUserMailable;
 use Exception;
 use Illuminate\Support\Facades\Auth;
 use App\Repositories\Contracts\UserRepositoryContract;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Mail;
 
 class AuthController extends Controller
 {
@@ -80,12 +76,6 @@ class AuthController extends Controller
             if (!$created = $this->repository->create($request->getUserData())) {
                 throw new Exception($created);
             }
-
-            $name = $request->input("name");
-            $email = $request->input("email");
-            $phone = "";
-            $newUserMailable = new NewUserMailable($name, $email, $phone);
-            Mail::to($email)->queue($newUserMailable);
 
             return redirect(route("auth.login"))->with([
                 "success-message" => __("user.success.store")

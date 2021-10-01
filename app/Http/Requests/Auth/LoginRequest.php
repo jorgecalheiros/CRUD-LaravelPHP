@@ -3,11 +3,8 @@
 namespace App\Http\Requests\Auth;
 
 use Auth;
-use Composer\Command\ExecCommand;
-use Exception;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\ValidationException;
-use Log;
 
 class LoginRequest extends FormRequest
 {
@@ -29,7 +26,7 @@ class LoginRequest extends FormRequest
     public function rules()
     {
         return [
-            "email" => "required|email|unique:users",
+            "email" => "required|email",
             "password" => "required|min:8"
         ];
     }

@@ -115,7 +115,7 @@
          <div class="md:col-span-3 h-48 shadow-xl p-4 space-y-2 hidden md:block">
              <h3 class="font-bold uppercase">{!! __("user.text.title-profile") !!}</h3>
              <p class="">
-                 {!! __("user.text.text-profile") !!}
+                {{ $user->description }}
              </p>
          </div>
          <div style="width: 100%; display:flex;height: fit-content; align-items: center;justify-content: center; ">

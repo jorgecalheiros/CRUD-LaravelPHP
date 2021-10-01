@@ -17,7 +17,7 @@ abstract class AbstractRepository
 
     public function create(array $data)
     {
-        return $this->model->forceFill($data)->save();
+        return $this->model->fill($data)->save();
     }
 
     public function list(): Collection
@@ -43,7 +43,7 @@ abstract class AbstractRepository
 
         $model = $this->model->findOrFail($id);
 
-        $model->forceFill($data);
+        $model->fill($data);
 
         return $model->save();
     }

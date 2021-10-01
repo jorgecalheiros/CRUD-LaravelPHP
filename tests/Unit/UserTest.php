@@ -18,7 +18,6 @@ class UserTest extends TestCase
      */
     public function test_view_users_controller()
     {
-        $users = User::factory(2)->make()->all();
-        $expectedView = view('pages.users.index', compact('users'))->render();
+
     }
 }

@@ -34,15 +34,22 @@ class UserUpdate extends FormRequest
     /**
      * Return only user data and Hash the password if exists
      */
-    public function getUserData()
+    public function getUserData($user)
     {
         $data = $this->except(['_token', '_method']);
+
+        if (!Hash::check($data["password"], $user->password)) {
+            return back()->withErrors([
+                "modal-message" => __("auth.password")
+            ]);
+        }
 
         if (array_key_exists("password", $data) && $data["password"]) {
             $data["password"] =  Hash::make($data["password"]);
         } elseif (array_key_exists("password", $data) && empty($data["password"])) {
             unset($data["password"]);
         }
+
 
         return $data;
     }
