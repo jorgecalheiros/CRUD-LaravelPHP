@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\User\UserUpdate;
 use App\Repositories\Contracts\UserRepositoryContract;
 use Exception;
-use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {

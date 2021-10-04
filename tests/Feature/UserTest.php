@@ -11,10 +11,6 @@ class UserTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-
-        $userRepository = $this->mock(UserRepositoryContract::class);
-        $userRepository->shouldReceive('create')->andReturn(true);
-        $this->app->instance(UserRepositoryContract::class, $userRepository);
     }
 
 
@@ -83,7 +79,7 @@ class UserTest extends TestCase
     public function test_view_create()
     {
         $response = $this->get(route("auth.create"));
-        $response->assertSee("name=\"reppassword\"", false);
+        $response->assertSee("name=\"password_confirmation\"", false);
         $response->assertStatus(200);
     }
 
@@ -95,7 +91,7 @@ class UserTest extends TestCase
         $user = User::factory()->create();
         $this->actingAs($user);
         $response = $this->get(route("users.edit", 1));
-        $response->assertDontSee("name=\"reppassword\"");
+        $response->assertDontSee("name=\"password_confirmation\"");
         $response->assertStatus(200);
     }
 
