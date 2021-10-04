@@ -19,11 +19,19 @@ class UserTest extends TestCase
      */
     public function test_view_one_users_when_user_not_login()
     {
-        $user = User::factory()->create();
-        $this->actingAs($user);
         $response = $this->get(route("users.index", 1));
 
-        $response->assertStatus(200);
+        $response->assertStatus(302);
+    }
+
+
+    /**
+     * @return void
+     */
+    public function test_view_users_when_user_not_login()
+    {
+        $response = $this->get(route("users.index"));
+        $response->assertStatus(302);
     }
 
     /**
@@ -31,8 +39,10 @@ class UserTest extends TestCase
      */
     public function test_view_one_users()
     {
+        $user = User::factory()->create();
+        $this->actingAs($user);
         $response = $this->get(route("users.index", 1));
-        $response->assertStatus(302);
+        $response->assertStatus(200);
     }
 
     /**
@@ -42,17 +52,8 @@ class UserTest extends TestCase
     {
         $user = User::factory()->create();
         $this->actingAs($user);
-        $response = $this->get(route("users.index"));
+        $response = $this->get(route("users.index",1));
         $response->assertStatus(200);
-    }
-
-    /**
-     * @return void
-     */
-    public function test_view_users_when_user_not_login()
-    {
-        $response = $this->get(route("users.index"));
-        $response->assertStatus(302);
     }
 
     /**
@@ -159,7 +160,7 @@ class UserTest extends TestCase
     {
         $user = User::factory()->create();
         $this->actingAs($user);
-        $response = $this->get(route("auth.logout"));
+        $response = $this->get(route("auth.logout",1));
         $response->assertStatus(302);
     }
 }
