@@ -4,6 +4,9 @@
 @section('title', "Laravel")
 <x-system.message />
 @section('content')
+<div class="arrow-back-container--" id="back-to-page">
+    <i class="fas fa-arrow-left"></i>
+</div>
 <article class="py-12 px-4">
     <h1 class="text-4xl text-center mb-4 font-semibold font-heading font-semibold">{{ $post->title }}</h1>
     <p class="text-center">

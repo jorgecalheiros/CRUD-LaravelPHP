@@ -11,6 +11,9 @@
 @endphp
 
 @section('content-form')
+<div class="arrow-back-container--" id="back-to-page">
+    <i class="fas fa-arrow-left"></i>
+</div>
 <x-system.message />
  <div class="heading text-center font-bold text-2xl m-5 text-gray-800">
      @if (!$onlyEdit)

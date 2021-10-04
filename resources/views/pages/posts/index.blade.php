@@ -57,6 +57,9 @@
   <form action="{{ route('posts.create') }}" method="GET" class="form-create-post">
     <button class="p-2 pl-5 pr-5 bg-blue-500 text-gray-100 text-lg rounded-lg focus:border-4 border-blue-300">{{ __("misc.button.create_post") }}</button>
     </form>
+    <div class="arrow-back-container--" id="back-to-page">
+        <i class="fas fa-arrow-left"></i>
+    </div>
 @foreach ($posts as $post)
 <section class="text-blueGray-700 bg-white mt-20">
     <div class="container flex flex-col items-center px-5 py-16 mx-auto md:flex-row lg:px-28">

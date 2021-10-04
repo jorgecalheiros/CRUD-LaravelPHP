@@ -19,6 +19,9 @@
 
 @section('content-form')
 <x-system.message />
+<div class="arrow-back-container--" id="back-to-page">
+    <i class="fas fa-arrow-left"></i>
+</div>
  <div class="flex justify-center min-h-screen bg-gray-100">
     <div class="container sm:mt-40 mt-24 my-auto max-w-md border-2 border-gray-200 p-3 bg-white">
       <!-- header -->

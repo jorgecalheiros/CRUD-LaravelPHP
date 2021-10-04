@@ -6,6 +6,9 @@
 @section('content')
     <!-- Profile Card -->
     <br>
+    <div class="arrow-back-container--" id="back-to-page">
+        <i class="fas fa-arrow-left"></i>
+    </div>
 <div>
     <div class="md:grid grid-cols-4 grid-rows-2  bg-white gap-2 p-4 rounded-xl">
          <div class="md:col-span-1 h-48 shadow-xl ">

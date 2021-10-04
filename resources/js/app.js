@@ -53,5 +53,16 @@ function show_card_delete_user() {
         show_card_delete(btn);
     }
 }
+
+function back_to_page(){
+    let btn = document.getElementById("back-to-page");
+
+    if(btn){
+       btn.addEventListener("click", function(){
+        window.history.back();
+       })
+    }
+}
 show_card_delete_post();
 show_card_delete_user();
+back_to_page();

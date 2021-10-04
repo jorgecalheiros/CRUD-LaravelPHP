@@ -1902,8 +1902,19 @@ function show_card_delete_user() {
   }
 }
 
+function back_to_page() {
+  var btn = document.getElementById("back-to-page");
+
+  if (btn) {
+    btn.addEventListener("click", function () {
+      window.history.back();
+    });
+  }
+}
+
 show_card_delete_post();
 show_card_delete_user();
+back_to_page();
 
 /***/ }),
 

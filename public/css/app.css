@@ -31929,6 +31929,20 @@ header{
   width: 200px !important;
 }
 
+.arrow-back-container--{
+  background-color: cornflowerblue;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 2px 2px 5px grey;
+  margin: 10px;
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;
