@@ -46,12 +46,13 @@ Após os passos anteriores é necessário inserir algumas informações importan
 |APP_KEY     |Execute o comando `php artisan key:generate`         |
 |APP_ENV|(**local**: para ambiente de desenvolvimento, **production**: para ambiente de produção)|
 |APP_DEBUG|(**true**: para ambiente de desenvolvimento, **false**: para ambiente de produção)|
-|DB_CONNECTION     |mysql         |
+|DB_CONNECTION     |mariadb ou mysql        |
 |DB_HOST|localhost|
 |DB_PORT|3306|
 |DB_DATABASE     |defina o nome desejado para a base de dados         |
 |DB_USERNAME|defina o usuário desejado para a base de dados|
 |DB_PASSWORD     |defina a senha desejada para a base de dados         |
+|QUEUE_CONNECTION    |redis         |
 
 ---
 ## Banco de dados
@@ -64,6 +65,13 @@ Depois de fazer as observações crie o banco de dados de acordo com as intruç�
 - Pronto sua aplicação está funcionando
 
 ---
+
+## Portas da aplicação
+
+|Porta  |Descrição  |
+|---------|---------|
+|80     |aplicação (http)      ||
+|8025     |Mailhog (Dashboard)        |
 ## Em desenvolvimento
 
 
