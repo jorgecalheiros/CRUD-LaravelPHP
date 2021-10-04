@@ -1,3 +1,5 @@
+const { slice } = require('lodash');
+
 require('./bootstrap');
 
 function confirm() {
@@ -63,6 +65,19 @@ function back_to_page(){
        })
     }
 }
+
+function input_phone_mask(){
+    input = document.querySelector("input[name='phone']");
+
+    if(input){
+        input.addEventListener('blur', function (e) {
+            var x = e.target.value.replace(/\D/g, '').match(/(\d{2})(\d{4})(\d{4})/);
+            e.target.value = '(' + x[1] + ') ' + x[2] + '-' + x[3];
+        });
+    }
+}
+
+input_phone_mask();
 show_card_delete_post();
 show_card_delete_user();
 back_to_page();
