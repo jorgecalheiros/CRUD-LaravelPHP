@@ -1,7 +1,7 @@
 @extends('layouts/default')
 
 
-@section('title', "Laravel")
+@section('title', $post->title)
 <x-system.message />
 @section('content')
 <div class="arrow-back-container--" id="back-to-page">
@@ -22,7 +22,7 @@
         <div class="flex justify-center items-center">
             <div class="flex">
             <form action="{{ route('posts.edit', $post->id) }}" method="GET">
-                <button class="bg-gray-500 text-white px-6 py-2 rounded font-medium mx-3 hover:bg-gray-600 transition duration-200 each-in-out">{{ __("misc.button.edit")}}</button>
+                <button id="update-post" class="bg-gray-500 text-white px-6 py-2 rounded font-medium mx-3 hover:bg-gray-600 transition duration-200 each-in-out">{{ __("misc.button.edit")}}</button>
             </form>
             <button  class="bg-red-500 text-white px-6 py-2 rounded font-medium mx-3 hover:bg-red-600 transition duration-200 each-in-out" id="btn-delete-post">{{ __("misc.button.delete")}}</button>
             </div>
@@ -54,7 +54,7 @@
                 <form action="{{ route('posts.destroy', $post->id) }}" method="POST">
                     @csrf
                     @method("DELETE")
-                    <button  class="bg-red-500 text-white px-6 py-2 rounded font-medium mx-3 hover:bg-red-600 transition duration-200 each-in-out">{{ __("misc.button.delete")}}</button>
+                    <button  class="bg-red-500 text-white px-6 py-2 rounded font-medium mx-3 hover:bg-red-600 transition duration-200 each-in-out" id="delete-with-sure">{{ __("misc.button.delete")}}</button>
                 </form>
                 </div>
             </div>

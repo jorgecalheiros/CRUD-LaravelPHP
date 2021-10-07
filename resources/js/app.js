@@ -56,20 +56,20 @@ function show_card_delete_user() {
     }
 }
 
-function back_to_page(){
+function back_to_page() {
     let btn = document.getElementById("back-to-page");
 
-    if(btn){
-       btn.addEventListener("click", function(){
-        window.history.back();
-       })
+    if (btn) {
+        btn.addEventListener("click", function () {
+            window.history.back();
+        })
     }
 }
 
-function input_phone_mask(){
+function input_phone_mask() {
     input = document.querySelector("input[name='phone']");
 
-    if(input){
+    if (input) {
         input.addEventListener('blur', function (e) {
             var x = e.target.value.replace(/\D/g, '').match(/(\d{2})(\d{4})(\d{4})/);
             e.target.value = '(' + x[1] + ') ' + x[2] + '-' + x[3];

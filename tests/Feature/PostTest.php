@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Post;
 use App\Models\User;
 use Tests\TestCase;
 

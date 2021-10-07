@@ -9,11 +9,14 @@
     $postTitle = $post->title ?? "";
     $postContent = $post->content ?? "";
 @endphp
-
+@section('title')
+    @if (!$onlyEdit)
+        {{ __("post.text.title.create") }}
+    @else
+        {{ __("post.text.title.edit") }}
+    @endif
+@endsection
 @section('content-form')
-<div class="arrow-back-container--" id="back-to-page">
-    <i class="fas fa-arrow-left"></i>
-</div>
 <x-system.message />
  <div class="heading text-center font-bold text-2xl m-5 text-gray-800">
      @if (!$onlyEdit)
@@ -46,7 +49,7 @@
         </div>
         <!-- buttons -->
         <div class="buttons flex">
-          <div class="btn border border-gray-300 p-1 px-4 font-semibold cursor-pointer text-gray-500 ml-auto">{{ __("misc.button.cancel") }}</div>
+          <div id="btn_cancel_post" class="btn border border-gray-300 p-1 px-4 font-semibold cursor-pointer text-gray-500 ml-auto">{{ __("misc.button.cancel") }}</div>
           <div class="btn border border-indigo-500 p-1 px-4 font-semibold cursor-pointer text-gray-200 ml-2 bg-indigo-500" id="savePost">{{ $title }}</div>
         </div>
       </div>
@@ -57,5 +60,9 @@
             document.getElementById('content').value = postContent;
             document.getElementById('postSaveForm').submit();
         });
+
+        document.getElementById("btn_cancel_post").addEventListener("click", function(){
+            window.history.back();
+        })
     </script>
 @endsection

@@ -63,7 +63,7 @@
             </div>
             @endif
           <div class="mb-6">
-            <button  class="w-full px-3 py-4 text-white bg-indigo-500 rounded-md hover:bg-indigo-600 focus:outline-none duration-100 ease-in-out">{{ $title }}</button>
+            <button  id="btn-register" class="w-full px-3 py-4 text-white bg-indigo-500 rounded-md hover:bg-indigo-600 focus:outline-none duration-100 ease-in-out">{{ $title }}</button>
           </div>
           <p class="text-sm text-center text-gray-400">
             {{ $paragraf }}

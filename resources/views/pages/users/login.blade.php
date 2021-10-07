@@ -1,12 +1,9 @@
 @extends('layouts/login-cadastro')
 
-@section('title','Login')
+@section('title',__("user.text.Login"))
 
 @section('content-form')
     <x-system.message />
-<div class="arrow-back-container--" id="back-to-page">
-    <i class="fas fa-arrow-left"></i>
-</div>
  <div class="flex justify-center min-h-screen bg-gray-100">
     <div class="container sm:mt-40 mt-24 my-auto max-w-md border-2 border-gray-200 p-3 bg-white">
       <!-- header -->
@@ -31,7 +28,7 @@
 
           </div>
           <div class="mb-6">
-            <button  class="w-full px-3 py-4 text-white bg-indigo-500 rounded-md hover:bg-indigo-600 focus:outline-none duration-100 ease-in-out">{{ __("user.text.Login") }}</button>
+            <button  class="w-full px-3 py-4 text-white bg-indigo-500 rounded-md hover:bg-indigo-600 focus:outline-none duration-100 ease-in-out" id="btn-login">{{ __("user.text.Login") }}</button>
           </div>
           <p class="text-sm text-center text-gray-400">
             {{ __("user.text.dont_have_account") }}

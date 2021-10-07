@@ -1,6 +1,6 @@
 @extends('layouts/default')
 
-@section('title', "Laravel")
+@section('title', "Posts")
 <x-system.message />
 @section('header')
 <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
@@ -55,7 +55,7 @@
 @section('content')
 <br>
   <form action="{{ route('posts.create') }}" method="GET" class="form-create-post">
-    <button class="p-2 pl-5 pr-5 bg-blue-500 text-gray-100 text-lg rounded-lg focus:border-4 border-blue-300">{{ __("misc.button.create_post") }}</button>
+    <button id="btn_create_post" class="p-2 pl-5 pr-5 bg-blue-500 text-gray-100 text-lg rounded-lg focus:border-4 border-blue-300">{{ __("misc.button.create_post") }}</button>
     </form>
     <div class="arrow-back-container--" id="back-to-page">
         <i class="fas fa-arrow-left"></i>
@@ -69,7 +69,7 @@
             <p class="mb-8 text-base leading-relaxed text-left text-blueGray-600 "> {!! $post->content !!} </p>
             <div class="flex flex-col justify-center lg:flex-row">
                 <form action="{{ route('posts.show', $post->id) }}" method="GET">
-                    <button class="flex items-center px-6 py-2 mt-auto font-semibold text-white transition duration-500 ease-in-out transform bg-blue-600 rounded-lg hover:bg-blue-700 focus:shadow-outline focus:outline-none focus:ring-2 ring-offset-current ring-offset-2"> {{ __("post.text.title.show") }} </button>
+                    <button class="btn-show-post flex items-center px-6 py-2 mt-auto font-semibold text-white transition duration-500 ease-in-out transform bg-blue-600 rounded-lg hover:bg-blue-700 focus:shadow-outline focus:outline-none focus:ring-2 ring-offset-current ring-offset-2"> {{ __("post.text.title.show") }} </button>
                 </form>
             </div>
         </div>

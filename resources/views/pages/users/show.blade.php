@@ -1,7 +1,7 @@
 @extends('layouts/default')
 
 
-@section('title', "Laravel")
+@section('title', $user->name)
 <x-system.message />
 @section('content')
     <!-- Profile Card -->
