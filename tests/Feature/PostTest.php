@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Post;
 use App\Models\User;
 use Tests\TestCase;
 
@@ -19,7 +20,6 @@ class PostTest extends TestCase
         $response = $this->get(route("posts.index", 1));
 
         $response->assertStatus(302);
-
     }
 
     /**
@@ -33,7 +33,6 @@ class PostTest extends TestCase
         $response = $this->get(route("posts.index", 1));
 
         $response->assertStatus(200);
-
     }
 
     /**
@@ -44,8 +43,7 @@ class PostTest extends TestCase
     {
         $user = User::factory()->create();
         $this->actingAs($user);
-
-        $response = $this->get(route("posts.create",1));
+        $response = $this->get(route("posts.create"));
         $response->assertStatus(200);
         $this->assertEquals(false, $response->viewData("config")["onlyEdit"]);
         $this->assertEquals("POST", $response->viewData("config")["method"]);
@@ -59,8 +57,8 @@ class PostTest extends TestCase
     {
         $user = User::factory()->create();
         $this->actingAs($user);
-
-        $response = $this->get(route("posts.edit",1));
+        Post::factory()->create();
+        $response = $this->get(route("posts.edit", 1));
         $response->assertStatus(200);
         $this->assertEquals(true, $response->viewData("config")["onlyEdit"]);
         $this->assertEquals("PUT", $response->viewData("config")["_method"]);

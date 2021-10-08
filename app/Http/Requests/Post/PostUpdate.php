@@ -25,7 +25,8 @@ class PostUpdate extends FormRequest
     {
         return [
             "title" => "required|max:100|min:10",
-            "content" => "required"
+            "content" => "required",
+            "profile_picture" => "nullable|file"
         ];
     }
 }

@@ -12,7 +12,9 @@
     $description = $onlyEdit? __('user.text.Description_update'): __("user.text.Description_signup");
     $redirect = $onlyEdit ? "auth.login" : "users.index";
     $paragraf = $onlyEdit ? __("user.text.back_to_pag") : __("user.text.have_account");
-    $back = $onlyEdit ? __("user.text.back") : __("user.text.Login")
+    $back = $onlyEdit ? __("user.text.back") : __("user.text.Login");
+    $userPhoto = data_get($user ?? [], 'photo', '');
+    $userPictureUrl = $userPhoto ? url('/') . '/' . str_replace('public', 'storage', $userPhoto) : ''
 @endphp
 
 @section('title',$title)
@@ -28,35 +30,45 @@
       </div>
       <!-- sign-in -->
       <div class="m-6">
-        <form class="mb-4" action="{{ $route }}"  method="{{ $method }}">
+        <form class="mb-4" action="{{ $route }}"  method="{{ $method }}" enctype="multipart/form-data">
         @csrf
         @if ($_method)
             @method($_method)
         @endif
-        <div class="mb-6">
-            <label for="name" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">{{ __("misc.label.name") }}</label>
-            <x-form.input  type="name" name="name" placeholder="{{ __('misc.placeholder.name') }}" class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500" value="{{ $userName }}"/>
-        </div>
-          <div class="mb-6">
-            <label for="email" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">{{ __("misc.label.email") }}</label>
-            <x-form.input  type="email" name="email" placeholder="{{ __('misc.placeholder.email') }}" class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500" value="{{ $userEmail }}"/>
-          </div>
-          <div class="mb-6">
-            <div class="flex justify-between mb-2">
-              <label for="password" class="text-sm text-gray-600 dark:text-gray-400">{{ __("misc.label.password") }}</label>
+        @if ($onlyEdit)
+            <div class="mb-6">
+                <label for="profile_picture" class="cursor-pointer">
+                <img @if ($userPictureUrl) src="{{ $userPictureUrl }}" @endif alt="" class="w-44 h-44 bg-gray-100 rounded-full m-auto" />
+                </label>
+                <x-form.input type="file" name="profile_picture" class="hidden" />
             </div>
-            <x-form.input  type="password" name="password" placeholder="{{ $placeholder }}" class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"/>
-          </div>
+        @endif
+            <div class="mb-6">
+                <label for="name" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">{{ __("misc.label.name") }}</label>
+                <x-form.input  type="name" name="name" placeholder="{{ __('misc.placeholder.name') }}" class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500" value="{{ $userName }}"/>
+            </div>
+              <div class="mb-6">
+                <label for="email" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">{{ __("misc.label.email") }}</label>
+                <x-form.input  type="email" name="email" placeholder="{{ __('misc.placeholder.email') }}" class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500" value="{{ $userEmail }}"/>
+              </div>
+              @if ($onlyEdit)
+                <div class="mb-6">
+                    <label for="phone" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">{{ __("misc.label.phone") }}</label>
+                    <x-form.input type="text" name="phone" value="{{$user->phone}}" placeholder="00-0000-0000" class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"/>
+                </div>
+              @endif
+              <div class="mb-6">
+                <div class="flex justify-between mb-2">
+                  <label for="password" class="text-sm text-gray-600 dark:text-gray-400">{{ __("misc.label.password") }}</label>
+                </div>
+                <x-form.input  type="password" name="password" placeholder="{{ $placeholder }}" class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"/>
+              </div>
           @if (!$onlyEdit)
             <div class="mb-6">
                 <label for="password_confirmation" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">{{ __("misc.label.password_confirm") }}</label>
                 <x-form.input type="password" name="password_confirmation" placeholder="{{ __('misc.placeholder.password_confirm') }}" class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"/>
             </div>
             @else
-            <div class="mb-6">
-                <label for="phone" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">{{ __("misc.label.phone") }}</label>
-                <x-form.input type="text" name="phone" value="{{$user->phone}}" placeholder="00-0000-0000" class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"/>
-            </div>
             <div class="mb-6">
                 <label for="description" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">{{ __("user.text.title-profile") }}</label>
                 <textarea name="description" class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500">{{ $user->description }}</textarea>

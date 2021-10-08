@@ -60,6 +60,7 @@
     <div class="arrow-back-container--" id="back-to-page">
         <i class="fas fa-arrow-left"></i>
     </div>
+    <div class="">
 @foreach ($posts as $post)
 <section class="text-blueGray-700 bg-white mt-20">
     <div class="container flex flex-col items-center px-5 py-16 mx-auto md:flex-row lg:px-28">
@@ -78,6 +79,34 @@
         </div>
     </div>
 </section>
+<!-- This is an example component -->
+    <!--<div class='flex max-w-xl my-10 bg-white shadow-md rounded-lg overflow-hidden mx-auto'>
+        <div class='flex items-center w-full'>
+            <div class='w-full'>
+                <div class="flex flex-row mt-2 px-2 py-3 mx-3">
+                    <div class="w-auto h-auto rounded-full border-2 border-pink-500">
+                        <img class='w-12 h-12 object-cover rounded-full shadow cursor-pointer' alt='User avatar' src='https://images.unsplash.com/photo-1477118476589-bff2c5c4cfbb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=200&q=200'>
+                    </div>
+                    <div class="flex flex-col mb-2 ml-4 mt-1">
+                        <div class='text-gray-600 text-sm font-semibold'>Sara Lauren</div>
+                        <div class='flex w-full mt-1'>
+                            <div class='text-blue-700 font-base text-xs mr-1 cursor-pointer'>
+                                UX Design
+                            </div>
+                            <div class='text-gray-400 font-thin text-xs'>
+                                • 30 seconds ago
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="border-b border-gray-100"></div>
+                <div class='text-gray-400 font-medium text-sm mb-7 mt-6 mx-3 px-2'><img class="rounded" src="https://picsum.photos/536/354"></div>
+                <div class='text-gray-600 font-semibold text-lg mb-2 mx-3 px-2'>Dummy text of the printing and typesetting industry</div>
+                <div class='text-gray-500 font-thin text-sm mb-6 mx-3 px-2'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500</div>
+            </div>
+        </div>
+    </div>-->
 @endforeach
+</div>
     {{ $posts->links() }}
 @endsection

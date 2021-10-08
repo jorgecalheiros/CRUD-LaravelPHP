@@ -4,6 +4,7 @@ namespace App\Observers;
 
 use App\Mail\NewUserMailable;
 use App\Models\User;
+use App\Services\Contracts\UploadFileServiceContract;
 use Mail;
 
 class UserObserver
@@ -21,46 +22,31 @@ class UserObserver
     }
 
     /**
-     * Handle the User "updated" event.
-     *
-     * @param  \App\Models\User  $user
-     * @return void
+     * Heandle the User "updating" event
      */
-    public function updated(User $user)
+    public function updating(User $user)
     {
-        //
+        if (request()->hasFile("profile_picture")) {
+            $this->updateProfilePicture($user);
+        }
     }
 
     /**
-     * Handle the User "deleted" event.
      *
-     * @param  \App\Models\User  $user
-     * @return void
      */
-    public function deleted(User $user)
+    private function updateProfilePicture(User $user)
     {
-        //
-    }
+        $profilePicture = request()->file("profile_picture");
+        $userDirectory = "public/users/$user->id/profile";
 
-    /**
-     * Handle the User "restored" event.
-     *
-     * @param  \App\Models\User  $user
-     * @return void
-     */
-    public function restored(User $user)
-    {
-        //
-    }
+        /**
+         * @var UploadFileServiceContract
+         */
+        $fileServices = app(UploadFileServiceContract::class);
 
-    /**
-     * Handle the User "force deleted" event.
-     *
-     * @param  \App\Models\User  $user
-     * @return void
-     */
-    public function forceDeleted(User $user)
-    {
-        //
+        if (!$filePath = $fileServices->run($profilePicture, $userDirectory)) {
+            return false;
+        }
+        $user->photo = $filePath;
     }
 }

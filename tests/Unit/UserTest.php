@@ -26,10 +26,13 @@ class UserTest extends TestCase
             "name",
             "email",
             "password",
-            "description"
+            "description",
+            "phone"
         ];
 
-        $this->assertEquals($expected,$this->model->getFillable());
+        $diff = array_diff($expected, $this->model->getFillable());
+
+        $this->assertEquals(0, count($diff));
     }
 
 
@@ -51,6 +54,6 @@ class UserTest extends TestCase
         $expectedView = view("pages.users.form")->with(compact("config"))->render();
 
 
-        $this->assertStringContainsString(__("user.text.SigUp"),$expectedView);
+        $this->assertStringContainsString(__("user.text.SigUp"), $expectedView);
     }
 }

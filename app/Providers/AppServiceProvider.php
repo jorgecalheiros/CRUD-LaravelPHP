@@ -6,6 +6,8 @@ use App\Repositories\Contracts\PostRepositoryContract;
 use App\Repositories\Contracts\UserRepositoryContract;
 use App\Repositories\Implementations\PostRepository;
 use App\Repositories\Implementations\UserRepository;
+use App\Services\Contracts\UploadFileServiceContract;
+use App\Services\Implementations\UploadFileService;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -21,6 +23,7 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->bind(UserRepositoryContract::class, UserRepository::class);
         $this->app->bind(PostRepositoryContract::class, PostRepository::class);
+        $this->app->bind(UploadFileServiceContract::class, UploadFileService::class);
     }
 
     /**

@@ -8,6 +8,9 @@
     $route = data_get($config,"route");
     $postTitle = $post->title ?? "";
     $postContent = $post->content ?? "";
+
+    $postPhoto = data_get($post ?? [], 'photo', '');
+    $postPictureUrl = $postPhoto ? url('/') . '/' . str_replace('public', 'storage', $postPhoto) : ''
 @endphp
 @section('title')
     @if (!$onlyEdit)
@@ -28,12 +31,19 @@
 <style>
   body {background:white !important;}
 </style>
-  <form action="{{ $route }}" method="{{ $method }}" id="postSaveForm">
+  <form action="{{ $route }}" method="{{ $method }}" id="postSaveForm" enctype="multipart/form-data">
     @csrf
     @if ($_method)
         @method($_method)
     @endif
     <div class="editor mx-auto w-10/12 flex flex-col text-gray-800 border border-gray-300 p-4 shadow-lg max-w-2xl">
+        <div class="mb-6">
+            <label for="profile_picture" class="cursor-pointer">
+            <img @if ($postPictureUrl) src="{{ $postPictureUrl }}" @endif alt="" class="w-44 h-44 bg-gray-100 rounded-full m-auto" />
+            </label>
+            <x-form.input type="file" name="profile_picture" class="hidden" />
+        </div>
+
         <x-form.input type="text" name="title" icon="none"  placeholder="{{ __('post.placeholder.title') }}" value="{{ $postTitle }}" class="title bg-gray-100 border border-gray-300 p-2 mb-4 outline-none"/>
 
         <div id="quillEditor" class="height">
