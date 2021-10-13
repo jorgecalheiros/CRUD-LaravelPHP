@@ -77,6 +77,28 @@ function input_phone_mask() {
     }
 }
 
+function preview_img() {
+    let input = document.querySelector("input[name='profile_picture']");
+    let img = document.getElementById("img-preview");
+
+    if (input) {
+        input.addEventListener("change", function () {
+            let file = this.files[0];
+
+            if (file) {
+                let reader = new FileReader();
+
+                reader.addEventListener("load", function () {
+                    img.setAttribute("src", this.result);
+                });
+
+                reader.readAsDataURL(file);
+            }
+        })
+    }
+}
+
+preview_img();
 input_phone_mask();
 show_card_delete_post();
 show_card_delete_user();

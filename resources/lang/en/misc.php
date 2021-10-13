@@ -29,7 +29,7 @@ return [
         'edit' => 'Update',
         'delete' => 'Delete',
         'edit-photo' => 'update photo',
-        'create_post' => "create post",
+        'create_post' => "Create post",
         'account' => 'Account',
         'setting' => 'Setting'
     ],
@@ -59,5 +59,9 @@ return [
         'email' => 'E-mail:',
         'phone' => 'Phone',
         'User' => 'Users',
+        'post' => 'Post',
+        'readMore' => "Read more",
+        'home' => "Home",
+        "about" => "About us"
     ]
 ];

@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::redirect("/","/users");
+Route::redirect("/", "/posts");
 
 Route::resource("users", UserController::class, [
     'only' => ['index', 'show', 'edit', 'update', 'destroy']

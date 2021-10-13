@@ -10,7 +10,7 @@
     $userEmail = $user->email ?? '';;
     $placeholder= $onlyEdit? __('misc.placeholder.password_edit_confirmation') :__('misc.placeholder.password');
     $description = $onlyEdit? __('user.text.Description_update'): __("user.text.Description_signup");
-    $redirect = $onlyEdit ? "auth.login" : "users.index";
+    $redirect = $onlyEdit ? "auth.login" : "posts.index";
     $paragraf = $onlyEdit ? __("user.text.back_to_pag") : __("user.text.have_account");
     $back = $onlyEdit ? __("user.text.back") : __("user.text.Login");
     $userPhoto = data_get($user ?? [], 'photo', '');
@@ -38,7 +38,7 @@
         @if ($onlyEdit)
             <div class="mb-6">
                 <label for="profile_picture" class="cursor-pointer">
-                <img @if ($userPictureUrl) src="{{ $userPictureUrl }}" @endif alt="" class="w-44 h-44 bg-gray-100 rounded-full m-auto" />
+                <img @if ($userPictureUrl) src="{{ $userPictureUrl }}" @endif alt="" class="w-44 h-44 bg-gray-100 rounded-full m-auto" id="img-preview"/>
                 </label>
                 <x-form.input type="file" name="profile_picture" class="hidden" />
             </div>

@@ -1926,6 +1926,26 @@ function input_phone_mask() {
   }
 }
 
+function preview_img() {
+  var input = document.querySelector("input[name='profile_picture']");
+  var img = document.getElementById("img-preview");
+
+  if (input) {
+    input.addEventListener("change", function () {
+      var file = this.files[0];
+
+      if (file) {
+        var reader = new FileReader();
+        reader.addEventListener("load", function () {
+          img.setAttribute("src", this.result);
+        });
+        reader.readAsDataURL(file);
+      }
+    });
+  }
+}
+
+preview_img();
 input_phone_mask();
 show_card_delete_post();
 show_card_delete_user();

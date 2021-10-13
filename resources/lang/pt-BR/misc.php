@@ -61,7 +61,10 @@ return [
         'email' => 'E-mail:',
         'phone' => 'Telefone',
         'User' => 'Usuários',
-
+        'post' => 'Post',
+        'readMore' => "Leia mais",
+        'home' => "Pagina inicial",
+        "about" => "Sobre nós"
     ]
 
 ];

@@ -1,3 +1,8 @@
+@php
+    $postPhoto = data_get($post ?? [], 'photo', '');
+    $postPictureUrl = $postPhoto ? url('/') . '/' . str_replace('public', 'storage', $postPhoto) : "https://semantic-ui.com/images/wireframe/image.png";
+@endphp
+
 @extends('layouts/default')
 
 
@@ -7,7 +12,12 @@
 <div class="arrow-back-container--" id="back-to-page">
     <i class="fas fa-arrow-left"></i>
 </div>
-<article class="py-12 px-4">
+<article class="py-12 px-4 show-post--">
+    <div class="mb-6">
+        <label for="profile_picture" class="cursor-pointer">
+        <img @if ($postPictureUrl) src="{{ $postPictureUrl }}" @endif alt="" class="img-post--" />
+        </label>
+    </div>
     <h1 class="text-4xl text-center mb-4 font-semibold font-heading font-semibold">{{ $post->title }}</h1>
     <p class="text-center">
       <span>{{ $post->created_at }}</span>

@@ -10,7 +10,7 @@
     $postContent = $post->content ?? "";
 
     $postPhoto = data_get($post ?? [], 'photo', '');
-    $postPictureUrl = $postPhoto ? url('/') . '/' . str_replace('public', 'storage', $postPhoto) : ''
+    $postPictureUrl = $postPhoto ? url('/') . '/' . str_replace('public', 'storage', $postPhoto) : "https://semantic-ui.com/images/wireframe/image.png";
 @endphp
 @section('title')
     @if (!$onlyEdit)
@@ -39,7 +39,7 @@
     <div class="editor mx-auto w-10/12 flex flex-col text-gray-800 border border-gray-300 p-4 shadow-lg max-w-2xl">
         <div class="mb-6">
             <label for="profile_picture" class="cursor-pointer">
-            <img @if ($postPictureUrl) src="{{ $postPictureUrl }}" @endif alt="" class="w-44 h-44 bg-gray-100 rounded-full m-auto" />
+            <img @if ($postPictureUrl) src="{{ $postPictureUrl }}" @endif alt="" class="img-post--" id="img-preview" />
             </label>
             <x-form.input type="file" name="profile_picture" class="hidden" />
         </div>
