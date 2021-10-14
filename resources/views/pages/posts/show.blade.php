@@ -1,17 +1,23 @@
 @php
     $postPhoto = data_get($post ?? [], 'photo', '');
     $postPictureUrl = $postPhoto ? url('/') . '/' . str_replace('public', 'storage', $postPhoto) : "https://semantic-ui.com/images/wireframe/image.png";
+
+    $id = auth()->user()->id;
+    $userPhoto = auth()->user()->photo;
+    $photoPictureUrl = $userPhoto ? url('/') . '/' . str_replace('public', 'storage', $userPhoto) : "https://semantic-ui.com/images/wireframe/image.png";
 @endphp
 
 @extends('layouts/default')
 
 
 @section('title', $post->title)
+
+@section('header')
+@include('partials.common.header');
+@endsection
+
 <x-system.message />
 @section('content')
-<div class="arrow-back-container--" id="back-to-page">
-    <i class="fas fa-arrow-left"></i>
-</div>
 <article class="py-12 px-4 show-post--">
     <div class="mb-6">
         <label for="profile_picture" class="cursor-pointer">

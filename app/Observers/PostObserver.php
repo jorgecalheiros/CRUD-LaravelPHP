@@ -10,7 +10,7 @@ class PostObserver
     /**
      * Heandle the User "saving" event
      */
-    public function updating(Post $post)
+    public function saving(Post $post)
     {
         if (request()->hasFile("profile_picture")) {
             $this->updateProfilePicture($post);

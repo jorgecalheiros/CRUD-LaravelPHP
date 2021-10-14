@@ -40,7 +40,7 @@ class AuthController extends Controller
     {
         $request->authenticate();
 
-        return redirect(route("users.index"));
+        return redirect("/");
     }
 
     /**
@@ -101,4 +101,3 @@ class AuthController extends Controller
         }
     }
 }
-

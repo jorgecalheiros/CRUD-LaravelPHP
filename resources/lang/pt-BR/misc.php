@@ -64,7 +64,8 @@ return [
         'post' => 'Post',
         'readMore' => "Leia mais",
         'home' => "Pagina inicial",
-        "about" => "Sobre nós"
+        "about" => "Sobre nós",
+        'id' => 'ID',
     ]
 
 ];
