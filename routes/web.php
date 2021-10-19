@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\LangController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\SettingController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -37,4 +38,8 @@ Route::resource("posts", PostController::class)->middleware("auth");
 
 Route::prefix("system")->group(function () {
     Route::post("language_switch", [LangController::class, "changeLang"])->name("system.lang.switch");
+
+    Route::view('admin/settings/manage-users', 'pages.settings.manage-users')->name('system.admin.settings.manage-users');
+    Route::post('admin/settings/import-users', [SettingController::class, 'importUsers'])->name('system.admin.settings.import-users');
+    Route::get('admin/settings/export-users', [SettingController::class, 'exportUsers'])->name('system.admin.settings.export-users');
 });

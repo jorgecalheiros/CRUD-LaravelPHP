@@ -31966,6 +31966,14 @@ video {
   margin-top: 2em;
 }
 
+.a-show-user--{
+  background-color: cornflowerblue;
+  height: 100px;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;

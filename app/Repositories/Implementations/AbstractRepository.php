@@ -59,6 +59,11 @@ abstract class AbstractRepository
         return $model->delete();
     }
 
+    public function getTable(): string
+    {
+        return $this->model->getTable();
+    }
+
     public function resolveModel()
     {
         return app($this->model);

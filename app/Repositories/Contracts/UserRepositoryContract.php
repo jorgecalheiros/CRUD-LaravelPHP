@@ -20,4 +20,8 @@ interface UserRepositoryContract
     public function delete($id);
 
     public function resolveModel();
+
+    public function getTable(): string;
+
+    public function export();
 }

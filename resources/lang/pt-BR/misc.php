@@ -66,6 +66,7 @@ return [
         'home' => "Pagina inicial",
         "about" => "Sobre nós",
         'id' => 'ID',
+        'show' => "Ver",
     ]
 
 ];

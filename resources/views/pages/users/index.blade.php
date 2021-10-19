@@ -31,8 +31,9 @@
         <tr>
             <td class="w-1/3 text-left py-3 px-4">{{ $user->id }}</td>
             <td class="w-1/3 text-left py-3 px-4">{{ $user->name }}</td>
-            <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="mailto:jonsmith@mail.com">{{ $user->email }}</a></td>
-            <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="tel:622322662"> {{ $user->phone }}</a></td>
+            <td class="text-left py-3 px-4">{{ $user->email }}</td>
+            <td class="text-left py-3 px-4">{{ $user->phone }}</td>
+            <td class="text-left py-3 px-4"><a class="hover:text-blue-500 a-show-user--" href="{{ route('users.show', $user->id) }}">{{ __("misc.text.show") }}</a></td>
         </tr>
        @endforeach
       </tbody>
