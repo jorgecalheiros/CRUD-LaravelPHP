@@ -44,6 +44,11 @@ class ImportUsers implements ShouldQueue
 
         if (($handle = fopen($file, "r")) !== FALSE) {
             while (($dataCols = fgetcsv($handle, 0, ",")) !== FALSE) {
+                if (User::where("email", $dataCols[self::EMAIL_COL])->first()) {
+                    $row++;
+                    continue;
+                }
+
                 if ($row != 1) {
                     $users[] = [
                         "name" => $dataCols[self::NAME_COL],
@@ -54,7 +59,6 @@ class ImportUsers implements ShouldQueue
                         "updated_at" => Carbon::now(),
                     ];
                 }
-
                 $row++;
             }
         }

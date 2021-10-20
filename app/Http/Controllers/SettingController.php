@@ -14,11 +14,11 @@ class SettingController extends Controller
     public function importUsers(Request $request, UploadFileServiceContract $fileService)
     {
         try {
-            if (!$filePath = $request->file("users-file")) {
-                throw new Exception($filePath);
+            if (!$file = $request->file("users-file")) {
+                throw new Exception($file);
             }
 
-            if (!$fileService->run($filePath, "imports/users")) {
+            if (!$filePath = $fileService->run($file, "imports/users")) {
                 throw new Exception($filePath);
             }
 
@@ -26,7 +26,9 @@ class SettingController extends Controller
 
             $job->onQueue("imports");
 
-            $this->dispatch($job);
+            if (!$this->dispatch($job)) {
+                throw new Exception($job);
+            }
 
 
             return back()->with([
