@@ -6,6 +6,7 @@ use App\Http\Requests\Post\PostStore;
 use App\Http\Requests\Post\PostUpdate;
 use App\Repositories\Contracts\PostRepositoryContract;
 use Exception;
+use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
@@ -20,9 +21,11 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $posts = $this->repository->paginate(5);
+
+        $titleSearch = $request->get("s", "");
+        $posts = $this->repository->paginateWithSearch(5, "title", $titleSearch ?? "");
         return view("pages.posts.index", compact("posts"));
     }
 

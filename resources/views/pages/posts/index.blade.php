@@ -8,6 +8,7 @@
     $id = auth()->user()->id;
     $photo = auth()->user()->photo;
     $photoPictureUrl = $photo ? url("/"). '/' . str_replace("public" , "storage" , $photo) : "https://semantic-ui.com/images/wireframe/image.png";
+    $titleSearch = request()->get("s","");
 @endphp
 
 @section('header')
@@ -19,6 +20,14 @@
     <div class="px-6 py-8">
         <div class="container flex justify-between mx-auto">
             <div class="w-full lg:w-8/12">
+                <div>
+                    <form id="postSearchForm" action="{{ route('posts.index', ['s' => $titleSearch]) }}" method="GET">
+                        <div class="flex mb-5">
+                            <x-form.input id="titleSearch" class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500" type="text" name="s" placeholder="Search" value="{{ $titleSearch }}" />
+                            <input id="btnSearch" class="bg-red-500 text-white px-6 py-2 rounded font-medium mx-3 hover:bg-red-600 transition duration-200 each-in-out cursor-pointer" type="reset" value="Reset"/>
+                        </div>
+                    </form>
+                </div>
                 <div class="flex items-center justify-between">
                     <h1 class="text-xl font-bold text-gray-700 md:text-2xl">{{ __("misc.text.post") }}</h1>
                 </div>
@@ -50,7 +59,7 @@
                 </div>
                 @endforeach
                 <div class="pagination--">
-                    {{ $posts->links() }}
+                    {{ $posts->appends(request()->except('page'))->links() }}
                 </div>
             </div>
             <div class="hidden w-4/12 -mx-8 lg:block">
@@ -105,4 +114,10 @@
         </div>
     </div>
 </div>
+<script>
+    document.getElementById('btnSearch').addEventListener('click', function() {
+        document.getElementById('titleSearch').value = '';
+        document.getElementById('postSearchForm').submit();
+    });
+</script>
 @endsection

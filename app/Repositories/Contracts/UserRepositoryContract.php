@@ -11,7 +11,7 @@ interface UserRepositoryContract
 
     public function list(): Collection;
 
-    public function paginate(int $perPage): LengthAwarePaginator;
+    public function paginateWithSearch(int $perPage, string $field, string $nameSearch): LengthAwarePaginator;
 
     public function update($id, array $data);
 

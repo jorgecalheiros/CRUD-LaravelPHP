@@ -2,7 +2,7 @@
 <input
     type="{{ $type }}"
     name="{{ $name }}"
-    id="{{ $name }}"
+    id="{{ $id }}"
     class="{{ $class }}"
     spellcheck="false"
     placeholder="{{ $placeholder }}"

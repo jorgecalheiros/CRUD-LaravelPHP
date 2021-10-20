@@ -67,6 +67,7 @@ return [
         "about" => "Sobre nós",
         'id' => 'ID',
         'show' => "Ver",
+        'import-export' => 'Importar e Exportar Usuários'
     ]
 
 ];

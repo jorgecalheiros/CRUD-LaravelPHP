@@ -56,6 +56,8 @@
                 </svg></a>
             </div>
             <x-system.lang-switch/>
+
+            <a href="{{ route('admin.index') }}">Admin</a>
         </div>
     </footer>
 </body>

@@ -31974,6 +31974,10 @@ video {
   border-radius: 5px;
 }
 
+.forms-import-export--{
+  background-color: white;
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;

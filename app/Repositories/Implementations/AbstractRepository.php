@@ -25,9 +25,14 @@ abstract class AbstractRepository
         return $this->model->all();
     }
 
-    public function paginate(int $perPage): LengthAwarePaginator
+    public function paginateWithSearch(int $perPage, string $field, string $nameSearch): LengthAwarePaginator
     {
-        return $this->model->paginate($perPage);
+        $mainQuery = $this->model
+            ->when($nameSearch, function ($query) use ($nameSearch, $field) {
+                $query->where($field, "like", "%$nameSearch%");
+            });
+
+        return $mainQuery->paginate($perPage);
     }
 
     public function findOrFail($id)

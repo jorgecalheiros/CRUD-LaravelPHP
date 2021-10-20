@@ -43,3 +43,11 @@ Route::prefix("system")->group(function () {
     Route::post('admin/settings/import-users', [SettingController::class, 'importUsers'])->name('system.admin.settings.import-users');
     Route::get('admin/settings/export-users', [SettingController::class, 'exportUsers'])->name('system.admin.settings.export-users');
 });
+
+Route::prefix("admin")->group(function () {
+    Route::view("/", "pages.admin.index")->name("admin.index");
+    Route::get("/users", [UserController::class, "index"])->name("admin.users");
+    Route::view("/settings/manage-users", "pages.settings.manage-users")->name("admin.import-export");
+    Route::post('/settings/import-users', [SettingController::class, 'importUsers'])->name('admin.import-users');
+    Route::get('/settings/export-users', [SettingController::class, 'exportUsers'])->name('admin.export-users');
+});

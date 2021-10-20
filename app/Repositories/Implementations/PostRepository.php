@@ -11,8 +11,13 @@ class PostRepository extends AbstractRepository implements PostRepositoryContrac
     protected $model = Post::class;
 
     //Overrides
-    public function paginate(int $perPage): LengthAwarePaginator
+    public function paginateWithSearch(int $perPage, string $field, string $titleSearch): LengthAwarePaginator
     {
-        return $this->model->with("user")->paginate($perPage);
+        $mainQuery = $this->model
+            ->with("user")
+            ->when($titleSearch, function ($query) use ($titleSearch, $field) {
+                $query->where($field, "like", "%$titleSearch%");
+            });
+        return $mainQuery->paginate($perPage);
     }
 }

@@ -31,6 +31,7 @@ class ExportDatabaseRegister implements ShouldQueue
     public function __construct($repository, $directory, $requestedBy, $mailToNotify = "")
     {
         $this->repository = $repository;
+
         $this->directory = $directory;
         $this->requestedBy = $requestedBy;
         $this->mailToNotify = $mailToNotify;

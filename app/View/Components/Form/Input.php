@@ -38,11 +38,16 @@ class Input extends Component
     public $class;
 
     /**
+     * Id of input
+     */
+    public $id;
+
+    /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($type, $name, $placeholder = '', $value = '', $class = '', $onlyRead = false)
+    public function __construct($type, $name, $placeholder = '', $value = '', $class = '', $onlyRead = false, $id = "")
     {
         $this->type = $type;
         $this->name = $name;
@@ -50,6 +55,7 @@ class Input extends Component
         $this->value = $value;
         $this->onlyRead = $onlyRead;
         $this->class = $class;
+        $this->id = $id;
     }
 
     /**

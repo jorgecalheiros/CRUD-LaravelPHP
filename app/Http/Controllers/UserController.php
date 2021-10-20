@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\User\UserUpdate;
 use App\Repositories\Contracts\UserRepositoryContract;
 use Exception;
+use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
@@ -19,9 +20,10 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $users = $this->repository->paginate(5);
+        $nameSearch = $request->get("name", "") ?? "";
+        $users = $this->repository->paginateWithSearch(5, "name", $nameSearch);
 
         return view("pages.users.index", compact("users"));
     }

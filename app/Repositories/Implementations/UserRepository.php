@@ -9,7 +9,6 @@ class UserRepository extends AbstractRepository implements UserRepositoryContrac
 {
     protected $model = User::class;
 
-
     public function export()
     {
         return $this->model->all();
