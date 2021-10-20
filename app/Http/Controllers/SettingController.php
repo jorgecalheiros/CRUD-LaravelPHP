@@ -14,8 +14,12 @@ class SettingController extends Controller
     public function importUsers(Request $request, UploadFileServiceContract $fileService)
     {
         try {
-            if (!$filePath = $fileService->run($request->file("users-file"), "imports/users")) {
-                throw new Exception("Error");
+            if (!$filePath = $request->file("users-file")) {
+                throw new Exception($filePath);
+            }
+
+            if (!$fileService->run($filePath, "imports/users")) {
+                throw new Exception($filePath);
             }
 
             $job = new ImportUsers($filePath);
@@ -29,7 +33,7 @@ class SettingController extends Controller
                 'success-message' => 'Report requested with success!'
             ]);
         } catch (\Throwable $th) {
-            return $this->redirectWithErrors($th, "teste");
+            return $this->redirectWithErrors($th, __("user.error.file"));
         }
     }
 

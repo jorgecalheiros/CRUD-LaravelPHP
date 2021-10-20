@@ -40,6 +40,7 @@ return [
         'update' => 'Ocorreu um erro ao atualizar o usuário, tente novamente mais tarde!',
         'destroy' => 'Ocorreu um erro ao deletar o usuário, tente novamente mais tarde!',
         'logout' => 'Não foi possivel fazer logout',
+        'file' => 'Nenhum arquivo inserido'
     ],
 
     'success' => [

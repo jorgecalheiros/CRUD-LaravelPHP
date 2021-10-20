@@ -93,6 +93,7 @@
                         <span class="mx-3">{{ __("misc.text.import-export") }}</span>
                     </a>
                 </nav>
+                <x-system.lang-switch/>
             </div>
             <div class="flex-1 flex flex-col overflow-hidden">
                 <header class="flex justify-between items-center py-4 px-6 bg-white border-b-4 border-indigo-600">

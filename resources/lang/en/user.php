@@ -40,6 +40,7 @@ return [
         'update' => 'An error ocurred on user update, try again later!',
         'destroy' => 'An error ocurred on user deletion, try again later!',
         'logout' => 'Unable to log out',
+        'file' => 'No file inserted'
     ],
 
     'success' => [
