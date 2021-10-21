@@ -12,7 +12,7 @@ class ReportFinishMailableImport extends Mailable
     use Queueable, SerializesModels;
 
     public $UserName;
-    public $UserPasword;
+    public $UserPassword;
 
     /**
      * Create a new message instance.
@@ -22,7 +22,7 @@ class ReportFinishMailableImport extends Mailable
     public function __construct(string $username, string $password)
     {
         $this->UserName = $username;
-        $this->UserPasword = $password;
+        $this->UserPassword = $password;
     }
 
     /**

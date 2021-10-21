@@ -24,4 +24,8 @@ interface UserRepositoryContract
     public function getTable(): string;
 
     public function export();
+
+    public function import(array $users);
+
+    public function find_value(string $column, string $value);
 }

@@ -3,7 +3,6 @@
 namespace App\Jobs;
 
 use App\Mail\ReportFinishMailableImport;
-use App\Models\User;
 use Carbon\Carbon;
 use Hash;
 use Illuminate\Bus\Queueable;
@@ -19,6 +18,7 @@ class ImportUsers implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
+    private $repository;
     private $filePath;
     private $mailToNotify;
     private const NAME_COL = 1;
@@ -30,9 +30,10 @@ class ImportUsers implements ShouldQueue
      *
      * @return void
      */
-    public function __construct(string $filePath)
+    public function __construct($repository, string $filePath)
     {
         $this->filePath = $filePath;
+        $this->repository = $repository;
     }
 
     /**
@@ -49,7 +50,7 @@ class ImportUsers implements ShouldQueue
         try {
             if (($handle = fopen($file, "r")) !== FALSE) {
                 while (($dataCols = fgetcsv($handle, 0, ",")) !== FALSE) {
-                    if (User::where("email", $dataCols[self::EMAIL_COL])->first()) {
+                    if ($this->repository->find_value("email", $dataCols[self::EMAIL_COL])) {
                         $row++;
                         continue;
                     }
@@ -68,7 +69,7 @@ class ImportUsers implements ShouldQueue
                 }
             }
             if (count($users) > 0) {
-                User::insert($users);
+                $this->repository->import($users);
             }
 
             for ($i = 0; $i < count($users); $i++) {

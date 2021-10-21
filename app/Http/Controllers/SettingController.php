@@ -14,15 +14,21 @@ class SettingController extends Controller
     public function importUsers(Request $request, UploadFileServiceContract $fileService)
     {
         try {
+            $userRepository = app(UserRepositoryContract::class);
+
+
             if (!$file = $request->file("users-file")) {
                 throw new Exception($file);
             }
+
 
             if (!$filePath = $fileService->run($file, "imports/users")) {
                 throw new Exception($filePath);
             }
 
-            $job = new ImportUsers($filePath);
+
+
+            $job = new ImportUsers($userRepository, $filePath);
 
             $job->onQueue("imports");
 

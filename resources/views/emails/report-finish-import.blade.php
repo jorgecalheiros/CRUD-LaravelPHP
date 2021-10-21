@@ -8,6 +8,6 @@
     </tr>
     <tr>
         <td style="font-weight:bold;">Senha temporária:</td>
-        <td>{{ $UserPasword }}</td>
+        <td>{{ $UserPassword }}</td>
     </tr>
 </table>
