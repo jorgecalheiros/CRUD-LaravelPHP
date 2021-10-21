@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Mail\ReportFinishMailableImport;
 use App\Models\User;
 use Carbon\Carbon;
 use Hash;
@@ -11,12 +12,15 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Mail;
+use Log;
 
 class ImportUsers implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     private $filePath;
+    private $mailToNotify;
     private const NAME_COL = 1;
     private const EMAIL_COL = 2;
     private const DESCRIPTION_COL = 6;
@@ -42,28 +46,55 @@ class ImportUsers implements ShouldQueue
         $row = 1;
         $users = [];
 
-        if (($handle = fopen($file, "r")) !== FALSE) {
-            while (($dataCols = fgetcsv($handle, 0, ",")) !== FALSE) {
-                if (User::where("email", $dataCols[self::EMAIL_COL])->first()) {
-                    $row++;
-                    continue;
-                }
+        try {
+            if (($handle = fopen($file, "r")) !== FALSE) {
+                while (($dataCols = fgetcsv($handle, 0, ",")) !== FALSE) {
+                    if (User::where("email", $dataCols[self::EMAIL_COL])->first()) {
+                        $row++;
+                        continue;
+                    }
 
-                if ($row != 1) {
-                    $users[] = [
-                        "name" => $dataCols[self::NAME_COL],
-                        "email" => $dataCols[self::EMAIL_COL],
-                        "description" => $dataCols[self::DESCRIPTION_COL],
-                        "password" => Hash::make("password"),
-                        "created_at" => Carbon::now(),
-                        "updated_at" => Carbon::now(),
-                    ];
+                    if ($row != 1) {
+                        $users[] = [
+                            "name" => $dataCols[self::NAME_COL],
+                            "email" => $dataCols[self::EMAIL_COL],
+                            "description" => $dataCols[self::DESCRIPTION_COL],
+                            "password" => Hash::make("password"),
+                            "created_at" => Carbon::now(),
+                            "updated_at" => Carbon::now(),
+                        ];
+                    }
+                    $row++;
                 }
-                $row++;
             }
+            if (count($users) > 0) {
+                User::insert($users);
+            }
+
+            for ($i = 0; $i < count($users); $i++) {
+                $this->mailToNotify = $users[$i]["email"];
+                $this->notify($users[$i]["name"], "password");
+            }
+        } catch (\Throwable $th) {
+            Log::error('ImportUsers@handle --- ' . $th->getMessage() . PHP_EOL . $th->getTraceAsString());
+            return false;
         }
-        if (count($users) > 0) {
-            User::insert($users);
+    }
+
+    /**
+     * send email for new users
+     */
+    private function notify(string $Username, string $Userpass)
+    {
+        if (!$this->mailToNotify) {
+            return;
         }
+
+        $mailable = new ReportFinishMailableImport($Username, $Userpass);
+
+        $mailable->onQueue("emails");
+
+
+        Mail::to($this->mailToNotify)->queue($mailable);
     }
 }
