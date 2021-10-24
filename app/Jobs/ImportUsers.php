@@ -12,6 +12,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 use Log;
 
 class ImportUsers implements ShouldQueue
@@ -46,6 +47,7 @@ class ImportUsers implements ShouldQueue
         $file = storage_path("app/$this->filePath");
         $row = 1;
         $users = [];
+        $password = [];
 
         try {
             if (($handle = fopen($file, "r")) !== FALSE) {
@@ -56,16 +58,24 @@ class ImportUsers implements ShouldQueue
                         continue;
                     }
 
+                    $pass = Str::random(22);
+
                     if ($row != 1) {
                         $users[] = [
                             "name" => $dataCols[self::NAME_COL],
                             "email" => $dataCols[self::EMAIL_COL],
                             "description" => $dataCols[self::DESCRIPTION_COL],
-                            "password" => Hash::make("password"),
+                            "password" => Hash::make($pass),
                             "created_at" => Carbon::now(),
                             "updated_at" => Carbon::now(),
                         ];
-                    }
+
+                        $password[] = [
+                            "password" => $pass
+                        ];
+                    };
+
+
                     $row++;
                 }
             }
@@ -73,9 +83,10 @@ class ImportUsers implements ShouldQueue
                 $this->repository->import($users);
             }
 
+
             for ($i = 0; $i < count($users); $i++) {
                 $this->mailToNotify = $users[$i]["email"];
-                $this->notify($users[$i]["name"], "password");
+                $this->notify($users[$i]["name"], $password[$i]["password"]);
             }
         } catch (\Throwable $th) {
             Log::error('ImportUsers@handle --- ' . $th->getMessage() . PHP_EOL . $th->getTraceAsString());
