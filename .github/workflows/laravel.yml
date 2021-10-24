@@ -34,7 +34,7 @@ jobs:
         DB_CONNECTION: sqlite
         DB_DATABASE: database/database.sqlite
         APP_URL: "http://127.0.0.1:8000"
-      run: sail test
+      run: vendor/bin/phpunit
     - name: Upgrade Chrome Driver
       run: php artisan dusk:chrome-driver
     - name: Start Chrome Driver
