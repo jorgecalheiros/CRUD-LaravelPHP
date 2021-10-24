@@ -7,6 +7,7 @@ use App\Http\Requests\Post\PostUpdate;
 use App\Repositories\Contracts\PostRepositoryContract;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class PostController extends Controller
 {
@@ -25,7 +26,14 @@ class PostController extends Controller
     {
 
         $titleSearch = $request->get("s", "");
-        $posts = $this->repository->paginateWithSearch(5, "title", $titleSearch ?? "");
+        $page = $request->get("page", "1");
+
+        $posts = Cache::tags(["posts"])->get("posts:$page");
+        if ($titleSearch || !$posts) {
+            $posts = $this->repository->paginateWithSearch(5, "title", $titleSearch ?? "");
+            Cache::tags(["posts"])->put("posts:$page", $posts);
+        }
+
         return view("pages.posts.index", compact("posts"));
     }
 
@@ -60,6 +68,9 @@ class PostController extends Controller
             if (!$created = $this->repository->create($data)) {
                 throw new Exception($created);
             }
+
+            Cache::tags(["posts"])->flush();
+
             return redirect(route("posts.index"))->with([
                 "success-message" => __("post.success.store")
             ]);
@@ -76,7 +87,10 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        $post = $this->repository->findOrFail($id);
+        if (!$post = Cache::tags("post.show")->get("post.show:$id")) {
+            $post = $this->repository->findOrFail($id);
+            Cache::tags("post.show")->put("post.show:$id", $post);
+        }
         $url = env("APP_URL");
         return view("pages.posts.show", compact("post", "url"));
     }
@@ -119,6 +133,8 @@ class PostController extends Controller
                 throw new Exception($updated);
             }
 
+            Cache::tags(["posts"])->flush();
+
             return redirect(route("posts.show", $id))->with([
                 "success-message" => __("post.success.update")
             ]);
@@ -139,6 +155,9 @@ class PostController extends Controller
             if (!$destroy = $this->repository->delete($id)) {
                 throw new Exception($destroy);
             }
+
+            Cache::tags(["posts"])->flush();
+
             return redirect(route("posts.index"))->with([
                 "success-message" => __("post.success.destroy")
             ]);

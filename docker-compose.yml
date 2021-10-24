@@ -57,6 +57,20 @@ services:
             test: ["CMD", "redis-cli", "ping"]
             retries: 3
             timeout: 5s
+
+    redis-commander:
+        image: rediscommander/redis-commander
+        container_name: crud_laravel_redis_commander
+        ports:
+            - 8081:8081
+        environment:
+            - REDIS_HOSTS=local:redis:6379
+        depends_on:
+            - redis
+        links:
+            - redis
+        networks:
+            - sail
     mailhog:
         image: 'mailhog/mailhog:latest'
         ports:

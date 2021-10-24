@@ -50,6 +50,7 @@ class ImportUsers implements ShouldQueue
         try {
             if (($handle = fopen($file, "r")) !== FALSE) {
                 while (($dataCols = fgetcsv($handle, 0, ",")) !== FALSE) {
+
                     if ($this->repository->find_value("email", $dataCols[self::EMAIL_COL])) {
                         $row++;
                         continue;
@@ -92,6 +93,7 @@ class ImportUsers implements ShouldQueue
         }
 
         $mailable = new ReportFinishMailableImport($Username, $Userpass);
+
 
         $mailable->onQueue("emails");
 

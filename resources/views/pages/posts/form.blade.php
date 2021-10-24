@@ -41,7 +41,7 @@
             <label for="profile_picture" class="cursor-pointer">
             <img @if ($postPictureUrl) src="{{ $postPictureUrl }}" @endif alt="" class="img-post--" id="img-preview" />
             </label>
-            <x-form.input type="file" name="profile_picture" class="hidden" />
+            <x-form.input type="file" name="profile_picture" class="hidden" id="profile_picture" />
         </div>
 
         <x-form.input type="text" name="title" icon="none"  placeholder="{{ __('post.placeholder.title') }}" value="{{ $postTitle }}" class="title bg-gray-100 border border-gray-300 p-2 mb-4 outline-none"/>
