@@ -13,24 +13,24 @@ class PostObserver
     public function saving(Post $post)
     {
         if (request()->hasFile("profile_picture")) {
-            $this->updateProfilePicture($post);
+            $this->UpdatePostPicture($post);
         }
     }
 
     /**
      *
      */
-    private function updateProfilePicture(Post $post)
+    private function UpdatePostPicture(Post $post)
     {
-        $profilePicture = request()->file("profile_picture");
-        $userDirectory = "public/posts/$post->id/cover";
+        $postPicture = request()->file("post_picture");
+        $postDirectory = "public/posts/$post->id/cover";
 
         /**
          * @var UploadFileServiceContract
          */
         $fileServices = app(UploadFileServiceContract::class);
 
-        if (!$filePath = $fileServices->run($profilePicture, $userDirectory)) {
+        if (!$filePath = $fileServices->run($postPicture, $postDirectory)) {
             return false;
         }
         $post->photo = $filePath;

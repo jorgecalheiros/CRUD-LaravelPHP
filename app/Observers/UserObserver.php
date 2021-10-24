@@ -27,14 +27,14 @@ class UserObserver
     public function updating(User $user)
     {
         if (request()->hasFile("profile_picture")) {
-            $this->updateProfilePicture($user);
+            $this->UpdateProfilePicture($user);
         }
     }
 
     /**
      *
      */
-    private function updateProfilePicture(User $user)
+    private function UpdateProfilePicture(User $user)
     {
         $profilePicture = request()->file("profile_picture");
         $userDirectory = "public/users/$user->id/profile";
