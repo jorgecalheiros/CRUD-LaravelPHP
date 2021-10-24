@@ -53,7 +53,7 @@ class ImportUsers implements ShouldQueue
             if (($handle = fopen($file, "r")) !== FALSE) {
                 while (($dataCols = fgetcsv($handle, 0, ",")) !== FALSE) {
 
-                    if ($this->repository->find_value("email", $dataCols[self::EMAIL_COL])) {
+                    if ($this->repository->findValue("email", $dataCols[self::EMAIL_COL])) {
                         $row++;
                         continue;
                     }

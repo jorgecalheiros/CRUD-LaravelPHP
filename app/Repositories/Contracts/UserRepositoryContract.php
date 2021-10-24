@@ -27,5 +27,5 @@ interface UserRepositoryContract
 
     public function import(array $users);
 
-    public function find_value(string $column, string $value);
+    public function findValue(string $column, string $value);
 }

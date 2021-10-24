@@ -16,11 +16,11 @@ class UserRepository extends AbstractRepository implements UserRepositoryContrac
 
     public function import(array $users)
     {
-        return User::insert($users);
+        return $this->model->insert($users);
     }
 
-    public function find_value(string $column, string $value)
+    public function findValue(string $column, string $value)
     {
-        return User::where($column, $value)->first();
+        return $this->model->where($column, $value)->first();
     }
 }

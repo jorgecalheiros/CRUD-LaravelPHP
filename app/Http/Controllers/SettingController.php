@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\System\ImportUserRequest;
 use App\Jobs\ExportDatabaseRegister;
 use App\Jobs\ImportUsers;
 use App\Repositories\Contracts\UserRepositoryContract;
@@ -11,18 +12,14 @@ use Illuminate\Http\Request;
 
 class SettingController extends Controller
 {
-    public function importUsers(Request $request, UploadFileServiceContract $fileService)
+    public function importUsers(ImportUserRequest $request, UploadFileServiceContract $fileService)
     {
         try {
             $userRepository = app(UserRepositoryContract::class);
 
+            $file = $request->except("_token");
 
-            if (!$file = $request->file("users-file")) {
-                throw new Exception($file);
-            }
-
-
-            if (!$filePath = $fileService->run($file, "imports/users")) {
+            if (!$filePath = $fileService->run($file["users-file"], "imports/users")) {
                 throw new Exception($filePath);
             }
 
