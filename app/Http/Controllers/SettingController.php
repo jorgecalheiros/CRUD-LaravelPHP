@@ -8,7 +8,6 @@ use App\Jobs\ImportUsers;
 use App\Repositories\Contracts\UserRepositoryContract;
 use App\Services\Contracts\UploadFileServiceContract;
 use Exception;
-use Illuminate\Http\Request;
 
 class SettingController extends Controller
 {

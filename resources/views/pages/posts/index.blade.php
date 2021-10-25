@@ -4,10 +4,6 @@
 <x-system.message />
 
 @php
-    $name  = auth()->user()->name;
-    $id = auth()->user()->id;
-    $photo = auth()->user()->photo;
-    $photoPictureUrl = $photo ? url("/"). '/' . str_replace("public" , "storage" , $photo) : "https://semantic-ui.com/images/wireframe/image.png";
     $titleSearch = request()->get("s","");
 @endphp
 

@@ -1,3 +1,9 @@
+@php
+    $photo = auth()->user()->photo;
+    $id = auth()->user()->id;
+    $photoPictureUrl = $photo ? url("/"). '/' . str_replace("public" , "storage" , $photo) : "https://semantic-ui.com/images/wireframe/image.png";
+@endphp
+
 <nav class="px-6 py-4 bg-white shadow">
     <div class="container flex flex-col mx-auto md:flex-row md:items-center md:justify-between">
         <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>

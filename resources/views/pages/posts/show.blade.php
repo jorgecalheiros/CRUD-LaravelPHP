@@ -1,10 +1,6 @@
 @php
     $postPhoto = data_get($post ?? [], 'photo', '');
     $postPictureUrl = $postPhoto ? url('/') . '/' . str_replace('public', 'storage', $postPhoto) : "https://semantic-ui.com/images/wireframe/image.png";
-
-    $id = auth()->user()->id;
-    $userPhoto = auth()->user()->photo;
-    $photoPictureUrl = $userPhoto ? url('/') . '/' . str_replace('public', 'storage', $userPhoto) : "https://semantic-ui.com/images/wireframe/image.png";
 @endphp
 
 @extends('layouts/default')

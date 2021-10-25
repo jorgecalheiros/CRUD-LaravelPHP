@@ -3,10 +3,6 @@
 @section('title', "Laravel")
 
 @php
-    $name  = auth()->user()->name;
-    $photo = auth()->user()->photo;
-    $id = auth()->user()->id;
-    $photoPictureUrl = $photo ? url("/"). '/' . str_replace("public" , "storage" , $photo) : "https://semantic-ui.com/images/wireframe/image.png";
     $nameSearch = request()->get("name","");
 @endphp
 

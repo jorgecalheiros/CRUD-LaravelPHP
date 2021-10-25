@@ -1,14 +1,13 @@
 @extends('layouts/default')
 
-@php
-    $postPhoto = data_get($user ?? [], 'photo', '');
-    $photoPictureUrl = $postPhoto ? url('/') . '/' . str_replace('public', 'storage', $postPhoto) : "https://semantic-ui.com/images/wireframe/image.png";
-
-    $id = auth()->user()->id;
-@endphp
 @section('header')
 @include('partials.common.header');
 @endsection
+
+@php
+    $photo = $user->photo;
+    $photoPictureUrl = $photo ? url("/"). '/' . str_replace("public" , "storage" , $photo) : "https://semantic-ui.com/images/wireframe/image.png";
+@endphp
 @section('title', $user->name)
 <x-system.message />
 
