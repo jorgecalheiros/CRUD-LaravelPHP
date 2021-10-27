@@ -100,4 +100,20 @@ class AuthController extends Controller
             return $this->redirectWithErrors($th, __("user.error.logout"));
         }
     }
+
+    public function loginAdmin()
+    {
+        $url = env("APP_URL");
+
+        $type = "admin";
+
+        return view("pages.users.login", compact("url"), compact("type"));
+    }
+
+    public function authenticateAdmin(LoginRequest $request)
+    {
+        $request->authenticate();
+
+        return redirect("/");
+    }
 }

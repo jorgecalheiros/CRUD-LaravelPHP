@@ -14,7 +14,7 @@ class PostRepository extends AbstractRepository implements PostRepositoryContrac
     public function paginateWithSearch(int $perPage, string $field, string $titleSearch): LengthAwarePaginator
     {
         $mainQuery = $this->model
-            ->with("user")
+            ->with(["user", "categories"])
             ->when($titleSearch, function ($query) use ($titleSearch, $field) {
                 $query->where($field, "like", "%$titleSearch%");
             });

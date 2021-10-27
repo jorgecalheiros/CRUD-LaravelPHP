@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Events\LockoutEvent;
+use App\Listeners\LockoutListener;
 use App\Models\Post;
 use App\Models\User;
 use App\Observers\PostObserver;
@@ -22,6 +24,9 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+        LockoutEvent::class => [
+            LockoutListener::class,
+        ]
     ];
 
     /**
