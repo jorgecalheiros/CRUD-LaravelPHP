@@ -46,13 +46,13 @@ Route::prefix("system")->group(function () {
 });
 
 Route::prefix("admin")->group(function () {
-    Route::view("/", "pages.admin.index")->name("admin.index");
-    Route::get("/users", [UserController::class, "index"])->name("admin.users");
-    Route::view("/settings/manage-users", "pages.settings.manage-users")->name("admin.import-export");
-    Route::post('/settings/import-users', [SettingController::class, 'importUsers'])->name('admin.import-users');
-    Route::get('/settings/export-users', [SettingController::class, 'exportUsers'])->name('admin.export-users');
+    Route::view("/", "pages.admin.index")->name("admin.index")->middleware("admin");
+    Route::get("/users", [UserController::class, "index"])->name("admin.users")->middleware("admin");
+    Route::view("/settings/manage-users", "pages.settings.manage-users")->name("admin.import-export")->middleware("admin");
+    Route::post('/settings/import-users', [SettingController::class, 'importUsers'])->name('admin.import-users')->middleware("admin");
+    Route::get('/settings/export-users', [SettingController::class, 'exportUsers'])->name('admin.export-users')->middleware("admin");
 
     Route::resource("settings/category", CategoryController::class, [
-        'only' => ['index', 'create', 'update', 'edit', 'update', 'destroy']
-    ]);
+        'only' => ['index', 'create', 'store', 'update', 'edit', 'update', 'destroy']
+    ])->middleware("admin");
 });

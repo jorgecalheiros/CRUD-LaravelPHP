@@ -3,6 +3,7 @@
 return [
     'text' => [
         'title' => [
+            'add' => 'Add category',
             'create' => 'Category create',
             'show' => 'Show category',
             'edit' => 'Edit category',

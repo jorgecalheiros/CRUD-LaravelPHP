@@ -3,6 +3,7 @@
 return [
     'text' => [
         'title' => [
+            'add' => 'Adicionar categoiria',
             'create' => 'Criar categoria',
             'show' => 'Exibir categoria ',
             'edit' => 'Editar categoria',

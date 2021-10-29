@@ -2,19 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Category\StoreRequest;
-use App\Repositories\Contracts\CategoryRepositoryContract;
+use App\Repositories\Contracts\UserRepositoryContract;
 use Exception;
+use Hash;
 use Illuminate\Http\Request;
-use Str;
 
-class CategoryController extends Controller
+class AdminController extends Controller
 {
     private $repository;
 
-    public function __construct(CategoryRepositoryContract $respository)
+    public function __construct(UserRepositoryContract $repository)
     {
-        $this->repository = $respository;
+        $this->repository = $repository;
     }
     /**
      * Display a listing of the resource.
@@ -23,9 +22,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = $this->repository->list(false);
-
-        return view("pages.category.index", compact("categories"));
+        //
     }
 
     /**
@@ -35,14 +32,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $config = [
-            "onlyEdit" => false,
-            "title" => __("category.text.title.category"),
-            "method" => "POST",
-            "route" => route("category.store")
-        ];
-
-        return view("pages.category.form", compact("config"));
+        //
     }
 
     /**
@@ -51,21 +41,24 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreRequest $request)
+    public function store($data)
     {
         try {
-            $data = $request->except("token");
-            $data["slug"] = Str::slug($data["title"]);
+            $data["role"] = 1;
 
-            if (!$this->repository->create($data)) {
-                throw new Exception($data);
+            if (array_key_exists("password", $data) && $data["password"]) {
+                $data["password"] =  Hash::make($data["password"]);
+            } elseif (array_key_exists("password", $data) && empty($data["password"])) {
+                unset($data["password"]);
             }
 
-            return redirect(route("category.index"))->with([
-                "success-message" => __("category.success.store")
-            ]);
+            if (!$created = $this->repository->create($data)) {
+                throw new Exception($created);
+            }
+
+            return "Success";
         } catch (\Throwable $th) {
-            return $this->redirectWithErrors($th, __("category.error.store"));
+            return $th;
         }
     }
 

@@ -72,8 +72,9 @@ class UserController extends Controller
     public function update(UserUpdate $request, $id)
     {
         try {
-
             $user = $this->repository->findOrFail($id);
+
+
 
             if (!$update = $this->repository->update($id, $request->getUserData($user))) {
                 throw new Exception($update);

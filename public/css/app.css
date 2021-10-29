@@ -31978,6 +31978,21 @@ video {
   background-color: white;
 }
 
+.add_category--{
+  background-color: green;
+  padding: 10px;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+}
+
+.container-add-category--{
+  display: flex;
+  margin-top: 10px;
+  width: 50%;
+  margin-left: 8%;
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;
