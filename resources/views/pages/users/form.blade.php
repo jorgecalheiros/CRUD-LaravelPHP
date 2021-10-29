@@ -40,7 +40,7 @@
                 <label for="profile_picture" class="cursor-pointer">
                 <img @if ($userPictureUrl) src="{{ $userPictureUrl }}" @endif alt="" class="w-44 h-44 bg-gray-100 rounded-full m-auto" id="img-preview"/>
                 </label>
-                <x-form.input type="file" name="profile_picture" class="hidden" />
+                <x-form.input type="file" name="profile_picture" class="hidden" id="profile_picture" />
             </div>
         @endif
             <div class="mb-6">

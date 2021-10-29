@@ -7,7 +7,6 @@
 @endphp
 
 @section('content')
-
 <div class="md:px-32 py-8 w-full">
     <form id="postSearchForm" action="{{ route('users.index', ['s' => $nameSearch]) }}" method="GET">
         <div class="flex mb-5">

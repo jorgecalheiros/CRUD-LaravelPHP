@@ -5,13 +5,13 @@ namespace App\Repositories\Contracts;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 
-interface PostRepositoryContract
+interface CategoryRepositoryContract
 {
     public function create(array $data);
 
-    public function list(): Collection;
+    public function list(bool $useCache = true, int $limit = 5): Collection;
 
-    public function paginateWithSearch(int $perPage, string $field, string $titleSearch, string $cat = ''): LengthAwarePaginator;
+    public function paginateWithSearch(int $perPage, string $field, string $titleSearch): LengthAwarePaginator;
 
     public function update($id, array $data);
 

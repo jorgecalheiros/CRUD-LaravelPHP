@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Post\PostStore;
 use App\Http\Requests\Post\PostUpdate;
+use App\Repositories\Contracts\CategoryRepositoryContract;
 use App\Repositories\Contracts\PostRepositoryContract;
 use Exception;
 use Illuminate\Http\Request;
@@ -25,16 +26,17 @@ class PostController extends Controller
     public function index(Request $request)
     {
 
-        $titleSearch = $request->get("s", "");
-        $page = $request->get("page", "1");
+        $titleSearch = $request->get("s", "") ?? "";
+        $page = $request->get("page", 1) ?? "";
+        $cat = $request->get("cat", "") ?? "";
 
-        $posts = Cache::tags(["posts"])->get("posts:$page");
-        if ($titleSearch || !$posts) {
-            $posts = $this->repository->paginateWithSearch(5, "title", $titleSearch ?? "");
-            Cache::tags(["posts"])->put("posts:$page", $posts);
-        }
+        $categoryRepository = app(CategoryRepositoryContract::class);
+        $categories = $categoryRepository->list(true);
 
-        return view("pages.posts.index", compact("posts"));
+        $posts = $this->repository->paginateWithSearch(5, "title", $titleSearch, $cat);
+
+
+        return view("pages.posts.index", compact("posts", "categories"));
     }
 
     /**
