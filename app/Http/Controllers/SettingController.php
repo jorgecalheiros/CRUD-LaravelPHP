@@ -34,7 +34,7 @@ class SettingController extends Controller
 
 
             return back()->with([
-                'success-message' => 'Report requested with success!'
+                'success-message' => __("setting.success.import-export")
             ]);
         } catch (\Throwable $th) {
             return $this->redirectWithErrors($th, __("user.error.file"));

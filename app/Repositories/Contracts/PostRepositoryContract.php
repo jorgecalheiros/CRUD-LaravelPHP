@@ -11,7 +11,7 @@ interface PostRepositoryContract
 
     public function list(): Collection;
 
-    public function paginateWithSearch(int $perPage, string $field, string $titleSearch, string $cat = ''): LengthAwarePaginator;
+    public function postPaginateWithSearch(int $perPage, int $page, string $field, string $titleSearch, string $cat = ''): LengthAwarePaginator;
 
     public function update($id, array $data);
 

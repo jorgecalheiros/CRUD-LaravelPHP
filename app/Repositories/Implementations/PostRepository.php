@@ -4,6 +4,7 @@ namespace App\Repositories\Implementations;
 
 use App\Models\Post;
 use App\Repositories\Contracts\PostRepositoryContract;
+use Cache;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 class PostRepository extends AbstractRepository implements PostRepositoryContract
@@ -11,8 +12,16 @@ class PostRepository extends AbstractRepository implements PostRepositoryContrac
     protected $model = Post::class;
 
     //Overrides
-    public function paginateWithSearch(int $perPage, string $field, string $titleSearch, string $cat = ''): LengthAwarePaginator
+    public function postPaginateWithSearch(int $perPage, int $page, string $field, string $titleSearch, string $cat = ''): LengthAwarePaginator
     {
+        $avoidCache = $titleSearch || $cat;
+
+        $posts = Cache::tags(["posts"])->get("posts:$page");
+
+        if (!$avoidCache && $posts && count($posts) > 0) {
+            return $posts;
+        }
+
         $mainQuery = $this->model
             ->with(["user", "categories"])
             ->when($titleSearch, function ($query) use ($titleSearch, $field) {
@@ -23,6 +32,12 @@ class PostRepository extends AbstractRepository implements PostRepositoryContrac
                     $query->where("categories.slug", $cat);
                 });
             });
-        return $mainQuery->paginate($perPage);
+        $posts = $mainQuery->paginate($perPage);
+
+        if (!$avoidCache) {
+            Cache::tags(["posts"])->put("posts:$page", $posts);
+        }
+
+        return $posts;
     }
 }

@@ -27,13 +27,13 @@ class PostController extends Controller
     {
 
         $titleSearch = $request->get("s", "") ?? "";
-        $page = $request->get("page", 1) ?? "";
+        $page = $request->get("page", 1) ?? 1;
         $cat = $request->get("cat", "") ?? "";
 
         $categoryRepository = app(CategoryRepositoryContract::class);
         $categories = $categoryRepository->list(true);
 
-        $posts = $this->repository->paginateWithSearch(5, "title", $titleSearch, $cat);
+        $posts = $this->repository->postPaginateWithSearch(5, $page, "title", $titleSearch, $cat);
 
 
         return view("pages.posts.index", compact("posts", "categories"));
@@ -67,11 +67,10 @@ class PostController extends Controller
         try {
             $data = $request->except(["_token"]);
             $data["user_id"] = auth()->user()->id;
+
             if (!$created = $this->repository->create($data)) {
                 throw new Exception($created);
             }
-
-            Cache::tags(["posts"])->flush();
 
             return redirect(route("posts.index"))->with([
                 "success-message" => __("post.success.store")
@@ -135,7 +134,7 @@ class PostController extends Controller
                 throw new Exception($updated);
             }
 
-            Cache::tags(["posts"])->flush();
+            //Cache::tags(["posts"])->flush();
 
             return redirect(route("posts.show", $id))->with([
                 "success-message" => __("post.success.update")
@@ -158,7 +157,7 @@ class PostController extends Controller
                 throw new Exception($destroy);
             }
 
-            Cache::tags(["posts"])->flush();
+            //Cache::tags(["posts"])->flush();
 
             return redirect(route("posts.index"))->with([
                 "success-message" => __("post.success.destroy")

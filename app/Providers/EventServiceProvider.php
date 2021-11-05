@@ -4,8 +4,10 @@ namespace App\Providers;
 
 use App\Events\LockoutEvent;
 use App\Listeners\LockoutListener;
+use App\Models\Category;
 use App\Models\Post;
 use App\Models\User;
+use App\Observers\CategoryObserver;
 use App\Observers\PostObserver;
 use App\Observers\UserObserver;
 use Illuminate\Auth\Events\Registered;
@@ -38,5 +40,6 @@ class EventServiceProvider extends ServiceProvider
     {
         User::observe(UserObserver::class);
         Post::observe(PostObserver::class);
+        Category::observe(CategoryObserver::class);
     }
 }

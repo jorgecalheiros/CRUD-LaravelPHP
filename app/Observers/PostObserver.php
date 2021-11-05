@@ -4,6 +4,7 @@ namespace App\Observers;
 
 use App\Models\Post;
 use App\Services\Contracts\UploadFileServiceContract;
+use Cache;
 
 class PostObserver
 {
@@ -12,9 +13,17 @@ class PostObserver
      */
     public function saving(Post $post)
     {
-        if (request()->hasFile("profile_picture")) {
+        if (request()->hasFile("post_picture")) {
             $this->UpdatePostPicture($post);
         }
+    }
+
+    /**
+     * Heandle the User "saving" event
+     */
+    public function saved()
+    {
+        Cache::tags(["posts", "post.show"])->flush();
     }
 
     /**
