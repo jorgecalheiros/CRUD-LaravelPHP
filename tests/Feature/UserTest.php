@@ -52,7 +52,7 @@ class UserTest extends TestCase
     {
         $user = User::factory()->create();
         $this->actingAs($user);
-        $response = $this->get(route("users.index",1));
+        $response = $this->get(route("users.index", 1));
         $response->assertStatus(200);
     }
 
@@ -160,7 +160,7 @@ class UserTest extends TestCase
     {
         $user = User::factory()->create();
         $this->actingAs($user);
-        $response = $this->get(route("auth.logout",1));
+        $response = $this->get(route("auth.logout", 1));
         $response->assertStatus(302);
     }
 }

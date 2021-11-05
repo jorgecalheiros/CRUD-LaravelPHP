@@ -82,7 +82,7 @@ class ExampleTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->visit("/posts")
-                ->click(".btn-show-post")
+                ->click(".actClickPost")
                 ->assertSee(__("misc.button.edit"))
                 ->assertSee(__("misc.button.delete"));
         });
@@ -95,14 +95,14 @@ class ExampleTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->visit("/posts")
-                ->click(".btn-show-post")
+                ->click(".actClickPost")
                 ->assertSee(__("misc.button.edit"))
                 ->click("#update-post")
                 ->assertSee(__("post.text.title.edit"))
                 ->assertTitle(__("post.text.title.edit"))
                 ->type("[name='title']", "Title test Dusk Edit")
                 ->type("p", "Lorem lorem lorem dusk lorem lorem lorem Edit")
-                ->click("#savePost")
+                ->click("#savePost")->waitForText(__("misc.button.edit"), 5)
                 ->assertSee(__("misc.button.edit"));
         });
     }
@@ -114,7 +114,7 @@ class ExampleTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->visit("/posts")
-                ->click(".btn-show-post")
+                ->click(".actClickPost")
                 ->assertSee(__("misc.button.delete"))
                 ->click("#btn-delete-post")
                 ->click("#delete-with-sure")
@@ -130,7 +130,7 @@ class ExampleTest extends DuskTestCase
     public function test_logout()
     {
         $this->browse(function (Browser $browser) {
-            $browser->visit("/users")
+            $browser->visit("/posts")
                 ->click("#cursor_pointer")
                 ->click("#logout")
                 ->assertSee(__("user.text.Login"));

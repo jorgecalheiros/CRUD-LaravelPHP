@@ -40,7 +40,7 @@
                         <div class="">
                             <img  @if ($postPictureUrl) src="{{ $postPictureUrl }}" @endif alt="" class="img-post--">
                         </div>
-                        <div class="mt-2"><a href="{{ route('posts.show', $post->id) }}" class="text-2xl font-bold text-gray-700 hover:underline">{{ $post->title }}</a>
+                        <div class="mt-2"><a href="{{ route('posts.show', $post->id) }}" class="actClickPost text-2xl font-bold text-gray-700 hover:underline">{{ $post->title }}</a>
                             <p class="mt-2 text-gray-600">{!! $post->content !!}</p>
                         </div>
                         <div class="flex items-center justify-between mt-4"><a href="{{ route('posts.show', $post->id) }}"
