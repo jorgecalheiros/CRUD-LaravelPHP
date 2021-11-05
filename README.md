@@ -28,6 +28,8 @@ Essa aplicação tem como objetivo criar um gerenciador de conteudos que foi con
 
 - Copiar o arquivo `.env.example` e mudar o nome para `.env`
 
+- Copiar o arquivo `.env.dusk.example` e mudar o nome para `.env.dusk`
+
 - Executar o comando `composer update`
 
 - Executar o camando `npm install`
