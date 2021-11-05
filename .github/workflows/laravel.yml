@@ -44,4 +44,4 @@ jobs:
     - name: Run Dusk Tests
       run: |
         chmod -R 0755 vendor/laravel/dusk/bin/
-        php artisan dusk
+        ./vendor/bin/sail dusk

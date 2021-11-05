@@ -20,7 +20,7 @@ class ExampleTest extends DuskTestCase
                 ->type("[name='email']", "test@gmail.com")
                 ->type("[name='password']", "password")
                 ->type("[name='password_confirmation']", "password")
-                ->click("#btn-register")
+                ->click("#btn-register")->waitForText(__("user.text.Login"), 5)
                 ->assertSee(__("user.text.Login"));
         });
     }
