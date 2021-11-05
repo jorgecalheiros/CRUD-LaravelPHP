@@ -57,6 +57,18 @@ Após os passos anteriores é necessário inserir algumas informações importan
 |QUEUE_CONNECTION    |redis         |
 |CACHE_DRIVER    |redis         |
 
+
+## Observações
+
+Após os passos anteriores é necessário inserir algumas informações importante dentro do arquivo `.env.dusk`
+
+
+|Váriavel  |Valor  |
+|---------|---------|
+|APP_URL     |http://laravel.test      |
+|APP_KEY     |Copie e cole o valor da variavel APP_KEY `.env`      |
+|DEBUGBAR_ENABLED|false|
+
 ---
 ## Banco de dados
 
@@ -69,12 +81,21 @@ Depois de fazer as observações crie o banco de dados de acordo com as intruç�
 
 ---
 
-## Portas da aplicação
+## Ultimos detalhes
+
+Execute o comando `sail artisan storage:link` para linkar a pasta public dentro de storage para dentro da pasta public na raiz do projeto, assim o upload de arquivos estará funcionando perfeitamente.
+
+
+## Portas da aplicação e rotas
 
 |Porta  |Descrição  |
 |---------|---------|
 |80     |aplicação (http)      ||
 |8025     |Mailhog (Dashboard)        |
+|8081|redis Commander|
+|localhost/horizon|Laravel Horizon|
+|localhost/telescope| Laravel Telescope |
+
 ## Em desenvolvimento
 
 
