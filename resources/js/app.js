@@ -1,4 +1,4 @@
-const { slice } = require('lodash');
+const { slice, conforms } = require('lodash');
 
 require('./bootstrap');
 
@@ -79,6 +79,10 @@ function input_phone_mask() {
 
 function preview_img() {
     let input = document.querySelector("input[name='profile_picture']");
+
+    if (input == null) {
+        input = document.querySelector("input[name='post_picture']");
+    }
     let img = document.getElementById("img-preview");
 
     if (input) {

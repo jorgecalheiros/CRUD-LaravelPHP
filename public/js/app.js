@@ -1841,7 +1841,8 @@ module.exports = {
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
 var _require = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js"),
-    slice = _require.slice;
+    slice = _require.slice,
+    conforms = _require.conforms;
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
@@ -1928,6 +1929,11 @@ function input_phone_mask() {
 
 function preview_img() {
   var input = document.querySelector("input[name='profile_picture']");
+
+  if (input == null) {
+    input = document.querySelector("input[name='post_picture']");
+  }
+
   var img = document.getElementById("img-preview");
 
   if (input) {
