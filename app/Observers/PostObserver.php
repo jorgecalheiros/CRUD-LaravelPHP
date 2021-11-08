@@ -3,11 +3,18 @@
 namespace App\Observers;
 
 use App\Models\Post;
+use App\Repositories\Contracts\CategoryPostRepositoryContract;
 use App\Services\Contracts\UploadFileServiceContract;
 use Cache;
 
 class PostObserver
 {
+    private $repository;
+
+    public function __construct()
+    {
+        $this->repository = app(CategoryPostRepositoryContract::class);
+    }
     /**
      * Heandle the User "saving" event
      */
@@ -24,6 +31,33 @@ class PostObserver
     public function saved()
     {
         Cache::tags(["posts", "post.show"])->flush();
+    }
+
+    /**
+     * Heandle the User "created" event
+     */
+    public function created(Post $post)
+    {
+        $data = [
+            "post_id" => $post->id,
+            "category_id" => request("category")
+        ];
+
+        $this->repository->create($data);
+    }
+
+
+    /**
+     * Heandle the User "updated" event
+     */
+    public function updated(Post $post)
+    {
+        $data = [
+            "post_id" => $post->id,
+            "category_id" => request("category")
+        ];
+
+        $this->repository->update($post->id, $data);
     }
 
     /**

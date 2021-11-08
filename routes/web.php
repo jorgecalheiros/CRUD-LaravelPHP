@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CategoryPostController;
 use App\Http\Controllers\LangController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\SettingController;
@@ -56,3 +57,5 @@ Route::prefix("admin")->group(function () {
         'only' => ['index', 'create', 'store', 'update', 'edit', 'update', 'destroy']
     ])->middleware("admin");
 });
+
+Route::get("test", [CategoryPostController::class, "index"]);

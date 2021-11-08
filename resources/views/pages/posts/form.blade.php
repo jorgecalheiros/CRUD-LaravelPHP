@@ -46,6 +46,12 @@
 
         <x-form.input type="text" name="title" icon="none"  placeholder="{{ __('post.placeholder.title') }}" value="{{ $postTitle }}" class="title bg-gray-100 border border-gray-300 p-2 mb-4 outline-none"/>
 
+        <select name="category" id="">
+            @foreach ($categories as $categorie)
+            <option value='{{ $categorie->id }}'>{{ $categorie->title }}</option>
+            @endforeach
+        </select>
+        <br>
         <div id="quillEditor" class="height">
             {!! $postContent !!}
         </div>

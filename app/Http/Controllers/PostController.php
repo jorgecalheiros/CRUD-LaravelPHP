@@ -46,6 +46,10 @@ class PostController extends Controller
      */
     public function create()
     {
+
+        $categoryRepository = app(CategoryRepositoryContract::class);
+        $categories = $categoryRepository->list(true);
+
         $config = [
             "onlyEdit" => false,
             "title" => __("post.text.title.create"),
@@ -53,7 +57,7 @@ class PostController extends Controller
             "route" => route("posts.store")
         ];
 
-        return view("pages.posts.form", compact("config"));
+        return view("pages.posts.form", compact("config", "categories"));
     }
 
     /**
@@ -65,7 +69,7 @@ class PostController extends Controller
     public function store(PostStore $request)
     {
         try {
-            $data = $request->except(["_token"]);
+            $data = $request->except(["_token", "category"]);
             $data["user_id"] = auth()->user()->id;
 
             if (!$created = $this->repository->create($data)) {
@@ -106,6 +110,10 @@ class PostController extends Controller
     {
         $post = $this->repository->findOrFail($id);
 
+        $categoryRepository = app(CategoryRepositoryContract::class);
+        $categories = $categoryRepository->list(true);
+
+
         $config = [
             "onlyEdit" => true,
             "title" => __("post.text.title.edit"),
@@ -114,7 +122,7 @@ class PostController extends Controller
             "route" => route("posts.update", $id)
         ];
 
-        return view("pages.posts.form", compact("post", "config"));
+        return view("pages.posts.form", compact("post", "config", "categories"));
     }
 
     /**
