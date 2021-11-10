@@ -50,7 +50,7 @@ class PostObserver
     /**
      * Heandle the User "updated" event
      */
-    public function updated(Post $post)
+    /*public function updated(Post $post)
     {
         $data = [
             "post_id" => $post->id,
@@ -58,7 +58,7 @@ class PostObserver
         ];
 
         $this->repository->update($post->id, $data);
-    }
+    }*/
 
     /**
      *

@@ -3,6 +3,7 @@
 namespace Tests\Unit;
 
 use App\Models\User;
+use App\Repositories\Contracts\UserRepositoryContract;
 use Tests\TestCase;
 
 class UserTest extends TestCase

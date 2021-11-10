@@ -34,6 +34,10 @@
 
                     $photo = $post->user->photo;
                     $photoPictureUrl = $photo ? url("/"). '/' . str_replace("public" , "storage" , $photo) : "https://semantic-ui.com/images/wireframe/image.png";
+
+                    $category = $post->categories->first();
+                    $categoryTitle = data_get($category, "title", __("post.text.no_category"));
+                    $categorySlug = data_get($category,"slug", "#");
                 @endphp
                 <div class="mt-6">
                     <div class="max-w-4xl px-10 py-6 mx-auto bg-white rounded-lg shadow-md">
@@ -49,6 +53,10 @@
                                     @if ($photoPictureUrl) src="{{ $photoPictureUrl }}" @endif
                                         alt="avatar" class="hidden object-cover w-10 h-10 mx-4 rounded-full sm:block">
                                     <h1 class="font-bold text-gray-700 hover:underline">{{ $post->user->name }}</h1>
+                                    <a href="{{ route('posts.index',['cat' => $categorySlug]) }}"><span class="leftArrowBox  bg-gray-700 p-1 text-white relative border-black border-2 rounded-md inline-block m-4 whitespace-no-wrap">{{ $categoryTitle }}</span></a>
+                                    <div class="">
+
+                                    </div>
                                 </a></div>
                         </div>
                     </div>

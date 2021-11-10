@@ -35,7 +35,6 @@ class PostController extends Controller
 
         $posts = $this->repository->postPaginateWithSearch(5, $page, "title", $titleSearch, $cat);
 
-
         return view("pages.posts.index", compact("posts", "categories"));
     }
 

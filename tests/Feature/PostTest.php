@@ -2,6 +2,7 @@
 
 use App\Models\Post;
 use App\Models\User;
+use App\Observers\PostObserver;
 use Tests\TestCase;
 
 class PostTest extends TestCase
@@ -57,7 +58,15 @@ class PostTest extends TestCase
     {
         $user = User::factory()->create();
         $this->actingAs($user);
+
+        $postObserver = $this->mock(PostObserver::class);
+        $postObserver->shouldReceive("created")->andReturn(true);
+        $postObserver->shouldReceive("saving")->andReturn(true);
+        $postObserver->shouldReceive("saved")->andReturn(true);
+        app()->instance(PostObserver::class, $postObserver);
+
         Post::factory()->create();
+
         $response = $this->get(route("posts.edit", 1));
         $response->assertStatus(200);
         $this->assertEquals(true, $response->viewData("config")["onlyEdit"]);

@@ -7,6 +7,7 @@ return [
             'show' => 'Show post',
             'edit' => 'Edit Post',
         ],
+        'no_category' => 'No category'
     ],
 
     'error' => [
