@@ -63,7 +63,7 @@ class ExampleTest extends DuskTestCase
     /**
      * create post
      */
-    public function create_post()
+    public function test_create_post()
     {
         $this->browse(function (Browser $browser) {
             $browser->visit("/posts")

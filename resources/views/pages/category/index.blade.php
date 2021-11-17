@@ -3,7 +3,9 @@
 @section('title', 'Categorys')
 
 @section('content')
+
 <x-system.message />
+
 <div class="container-add-category--">
     <a href="{{ route('category.create') }}" class="add_category--">{{ __("category.text.title.add") }}</a>
 </div>

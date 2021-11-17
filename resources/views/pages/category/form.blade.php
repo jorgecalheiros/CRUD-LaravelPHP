@@ -1,7 +1,7 @@
 @extends('layouts/admindefault')
 
 @php
-     $onlyEdit = data_get($config,"onlyEdit");
+    $onlyEdit = data_get($config,"onlyEdit");
     $title = data_get($config,"title");
     $method = data_get($config, "method");
     $_method = data_get($config,"_method");
