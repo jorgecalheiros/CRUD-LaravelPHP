@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\User;
 use Closure;
 use Illuminate\Http\Request;
 
@@ -16,7 +17,7 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if (!auth()->user()->role == 1) {
+        if (!auth()->user()->role == User::ROLE_ADMIN) {
             return redirect(route("posts.index"));
         }
         return $next($request);
